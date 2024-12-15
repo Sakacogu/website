@@ -9,7 +9,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> categories = ['Allar vörur', 'Konur', 'Karlar', 'Börn'];
+    final List<Map<String, dynamic>> categories = [
+      {'label': 'Allar vörur', 'categoryId': '0'},
+      {'label': 'Konur', 'categoryId': '1'},
+      {'label': 'Karlar', 'categoryId': '2'},
+      {'label': 'Börn', 'categoryId': '3'},
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -26,28 +31,39 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              top: 5,
-                left: 0,
+        ],
+      ),
+      ),
+            body: Column(
+              children: [
+                Center(
+            child:
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: categories.map((category) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: CategoryButton(
-                        label: category,
+                        label: category['label'],
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const Clothes()),
+                            MaterialPageRoute(
+                              builder: (context) => Clothes(
+                            initialCategory: category['categoryId'],
+                              ),
+                          ),
                           );
                         },
                       ),
                     );
                   }).toList(),
                 ),
-              ),
-          ],
-        ),
+                ),
+                ),
+        ],
       ),
     );
   }
