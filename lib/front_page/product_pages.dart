@@ -29,17 +29,24 @@ class _ClothesState extends State <Clothes> {
     return products.where((product) => product.id == selectedCategoryId).toList();
 }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Fatavörubúð',
-          style: GoogleFonts.besley(
-            color: Colors.white,
-            fontSize: 24,
-            fontStyle: FontStyle.italic,
+        title: Align(
+          alignment: Alignment.center,
+          child: TextButton(
+            onPressed: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+            child: Text(
+              'Fatavörubúð',
+              style: GoogleFonts.besley(
+                color: Colors.white,
+                fontSize: 24,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ),
         ),
       ),

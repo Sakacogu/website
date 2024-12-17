@@ -19,10 +19,10 @@ class CategoryButton extends StatelessWidget {
         onPressed: onPressed,
         style: TextButton.styleFrom(
           padding: const EdgeInsets.all(4.4),
-          backgroundColor: Colors.white70,
-          foregroundColor: const Color.fromARGB(255, 69, 69, 69),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(0),
           ),
         ),
         child: Text(

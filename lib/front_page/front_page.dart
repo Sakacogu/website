@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:website/items/item_data.dart';
+import 'package:website/front_page/product_pages.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:website/front_page/front_buttons.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,21 +17,22 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Stack(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'Fatavörubúð',
-                style: GoogleFonts.besley(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontStyle: FontStyle.italic,
-                ),
+        title: Align(
+          alignment: Alignment.center,
+          child: TextButton(
+            onPressed: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+            child: Text(
+              'Fatavörubúð',
+              style: GoogleFonts.besley(
+                color: Colors.white,
+                fontSize: 24,
+                fontStyle: FontStyle.italic,
               ),
             ),
-        ],
-      ),
+          ),
+        ),
       ),
             body: Column(
               children: [
