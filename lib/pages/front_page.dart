@@ -107,6 +107,13 @@ class HomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text('\$${product.price.toStringAsFixed(2)}'),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      product.color,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                   const SizedBox(height: 8),
                 ],
               ),
