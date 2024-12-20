@@ -41,6 +41,11 @@ class _ClothesState extends State<Clothes> {
       appBar: AppBar(
         leading: PopupMenuButton<String>(
           icon: const Icon(Icons.menu),
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          offset: const Offset(20, 50),
           onSelected: (value) {
             Navigator.pushReplacement(
               context,

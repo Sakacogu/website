@@ -17,6 +17,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         leading: PopupMenuButton<String>(
           icon: const Icon(Icons.menu),
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          offset: const Offset(20, 50),
           onSelected: (value) {
             Navigator.push(
               context,
