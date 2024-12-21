@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Product> filteredProducts = products.where((p) => p.id == '1').toList();
-    
+
     return Scaffold(
       appBar: AppBar(
         leading: PopupMenuButton<String>(
@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Image.asset(
+                    child: Image.network(
                       product.imageUrl,
                       fit: BoxFit.cover,
                       width: double.infinity,

@@ -105,7 +105,7 @@ class _ClothesState extends State<Clothes> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: Image.asset(
+                          child: Image.network(
                             product.imageUrl,
                             fit: BoxFit.cover,
                             width: double.infinity,
