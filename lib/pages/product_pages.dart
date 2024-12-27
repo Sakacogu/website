@@ -82,6 +82,7 @@ class _ClothesState extends State<Clothes> {
         currentCategoryId: selectedCategoryId,
         currentSubcategoryId: selectedSubcategory,
         onCategorySelected: (categoryId) {
+          _updateCategory(categoryId);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(

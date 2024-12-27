@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:website/data/categories.dart';
 import 'package:website/pages/front_page.dart';
 import 'package:website/pages/product_pages.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppDrawer extends StatelessWidget {
   final String currentCategoryId;
@@ -19,30 +20,36 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 69, 69, 69),
-      ),
-      width: 350,
-      elevation: 8,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(16.0),
-          bottomRight: Radius.circular(16.0),
-        ),
+    return Container(
+      margin: const EdgeInsets.fromLTRB (80, 80, 900, 350),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10.0,
+            offset: Offset(0, 10),
+          ),
+        ],
       ),
       child: Column(
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
+          DrawerHeader(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(255, 69, 69, 69),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(18),
+                  topRight: Radius.circular(18)
+              ),
             ),
             child: Center(
               child: Text(
                 'Fatavörubúð',
-                style: TextStyle(
+                style: GoogleFonts.besley(
                   color: Colors.white,
                   fontSize: 24,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
             ),
@@ -137,6 +144,7 @@ class AppDrawer extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(_capitalize(subcategory)),
+                      child: Text(subcategory),
                     ),
                   );
                 }),
