@@ -4,7 +4,6 @@ import 'package:website/items/product.dart';
 import 'package:website/data/items.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/widgets/subcategory_buttons.dart';
-import 'package:website/widgets/product_card.dart';
 
 class Clothes extends StatefulWidget {
   final String initialCategory;

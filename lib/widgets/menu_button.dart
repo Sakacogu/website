@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:website/data/categories.dart';
-import 'package:website/pages/front_page.dart';
+import 'package:website/pages/home_screen.dart';
 import 'package:website/pages/product_pages.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppDrawer extends StatelessWidget {
   final String currentCategoryId;
   final String? currentSubcategoryId;
-  final Function() onCategorySelected;
-  final Function(String) onSubcategorySelected;
+  final Function(String) onCategorySelected;
+  final Function(String?) onSubcategorySelected;
 
   const AppDrawer({
     super.key,
