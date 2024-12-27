@@ -1,10 +1,6 @@
 import 'package:website/items/class_items.dart';
 
 final List<Product> products = [
-
-  // -------------------------------------------------------
-  //                WOMEN (id: '1')
-  // -------------------------------------------------------
   Product(
     id: '1',
     name: 'Skyrta með slaufu',
@@ -366,9 +362,6 @@ final List<Product> products = [
     subcategory: 'yfirhafnir',
   ),
 
-  // -------------------------------------------------------
-  //                MEN (id: '2')
-  // -------------------------------------------------------
   Product(
     id: '2',
     name: 'Fínn og hlýr jakki',
@@ -667,9 +660,7 @@ final List<Product> products = [
     subcategory: 'fylgihlutir',
   ),
 
-  // -------------------------------------------------------
-  //                CHILDREN (id: '3')
-  // -------------------------------------------------------
+
   Product(
     id: '3',
     name: 'Fínni platform skór',
@@ -1030,5 +1021,4 @@ final List<Product> products = [
     description: 'Ferskur stíll með skemmtilega mynd.',
     subcategory: 'peysur',
   ),
-
 ];

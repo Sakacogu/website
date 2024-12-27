@@ -5,9 +5,11 @@ final List<Map<String, dynamic>> categories = [
   {'label': 'Börn', 'categoryId': '3'},
 ];
 
-final Map<String, List<String>> categorySubcategories = {
-  '0': ['All'],
-  '1': ['peysur', 'skyrtur', 'yfirhafnir', 'buxur', 'kjólar', 'fylgihlutir'], // Konur
-  '2': ['peysur', 'skyrtur', 'yfirhafnir', 'buxur', 'fylgihlutir'], // Karlar
-  '3': ['peysur', 'skyrtur', 'yfirhafnir', 'buxur', 'kjólar', 'fylgihlutir'], // Börn
-};
+final List<String> subcategories = [
+  'peysur',
+  'skyrtur',
+  'yfirhafnir',
+  'buxur',
+  'kjólar',
+  'skór og fylgihlutir',
+];

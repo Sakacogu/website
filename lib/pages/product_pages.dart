@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:website/items/class_items.dart';
 import 'package:website/items/items.dart';
-import 'package:website/buttons/horizontal_buttons.dart';
-import 'package:website/data/categories.dart';
+import 'package:website/buttons/menu_button.dart';
+import 'package:website/buttons/subcategory_buttons.dart';
 
 class Clothes extends StatefulWidget {
   final String initialCategory;
@@ -15,23 +15,45 @@ class Clothes extends StatefulWidget {
 
 class _ClothesState extends State<Clothes> {
   late String selectedCategoryId;
+  String? selectedSubcategory;
 
   @override
   void initState() {
     super.initState();
     selectedCategoryId = widget.initialCategory;
   }
-
   List<Product> get filteredProducts {
     if (selectedCategoryId == '0') {
-      return products;
+      if (selectedSubcategory == null || selectedSubcategory == 'All') {
+        return List.from(products);
+      } else {
+        return products.where((product) =>
+        product.subcategory == selectedSubcategory).toList();
+      }
+    } else {
+      if (selectedSubcategory == null || selectedSubcategory == 'All') {
+        return products.where((product) => product.id == selectedCategoryId)
+            .toList();
+      } else {
+        return products
+            .where((product) =>
+        product.id == selectedCategoryId &&
+            product.subcategory == selectedSubcategory)
+            .toList();
+      }
     }
-    return products.where((product) => product.id == selectedCategoryId).toList();
   }
-
+  //??????????????
   void _updateCategory(String categoryId) {
     setState(() {
       selectedCategoryId = categoryId;
+      selectedSubcategory = null;
+    });
+  }
+//?????????????????
+  void _updateSubcategory(String? subcategory) {
+    setState(() {
+      selectedSubcategory = subcategory;
     });
   }
 
@@ -39,30 +61,6 @@ class _ClothesState extends State<Clothes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: PopupMenuButton<String>(
-          icon: const Icon(Icons.menu),
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          offset: const Offset(20, 50),
-          onSelected: (value) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Clothes(initialCategory: value),
-              ),
-            );
-          },
-          itemBuilder: (context) {
-            return categories.map((category) {
-              return PopupMenuItem<String>(
-                value: category['categoryId'],
-                child: Text(category['label']),
-              );
-            }).toList();
-          },
-        ),
         title: Align(
           alignment: Alignment.center,
           child: TextButton(
@@ -80,11 +78,49 @@ class _ClothesState extends State<Clothes> {
           ),
         ),
       ),
+      drawer: AppDrawer(
+        currentCategoryId: selectedCategoryId,
+        currentSubcategoryId: selectedSubcategory,
+        onCategorySelected: (categoryId) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Clothes(initialCategory: categoryId),
+            ),
+          );
+        },
+        onSubcategorySelected: (subcategoryId) {
+          _updateSubcategory(subcategoryId == 'All' ? null : subcategoryId);
+        },
+      ),
       body: Column(
         children: [
-          CategoryRow(
-            onCategorySelected: _updateCategory,
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: DropdownButton<String>(
+              hint: const Text('Veldu undirflokk'),
+              value: selectedSubcategory,
+              isExpanded: true,
+              items: const [
+                DropdownMenuItem(
+                  value: 'All',
+                  child: Text('All'),
+                ),
+              ],
+              onChanged: (value) {
+                _updateSubcategory(value == 'All' ? null : value);
+              },
+            ),
           ),
+          const SizedBox(height: 10),
+          CategoryRowSubcategory(
+            selectedSubcategory: selectedSubcategory,
+            onSubcategorySelected: (subcategoryId) {
+              _updateSubcategory(subcategoryId == 'All' ? null : subcategoryId);
+            },
+          ),
+          const SizedBox(height: 10),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(10.0),
@@ -93,14 +129,15 @@ class _ClothesState extends State<Clothes> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 3/4,
+                childAspectRatio: 3 / 4,
               ),
               itemBuilder: (context, index) {
                 final product = filteredProducts[index];
                 return Card(
                   elevation: 2,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () { //fylla inni
+                    },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -109,6 +146,11 @@ class _ClothesState extends State<Clothes> {
                             product.imageUrl,
                             fit: BoxFit.cover,
                             width: double.infinity,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Center(
+                                  child: Icon(Icons.error)
+                              );
+                            },
                           ),
                         ),
                         Padding(
@@ -120,7 +162,7 @@ class _ClothesState extends State<Clothes> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text('\$${product.price.toStringAsFixed(2)}'),
+                          child: Text('${product.price} kr'),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
