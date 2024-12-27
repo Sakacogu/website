@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppDrawer extends StatelessWidget {
   final String currentCategoryId;
   final String? currentSubcategoryId;
-  final Function(String) onCategorySelected;
+  final Function() onCategorySelected;
   final Function(String) onSubcategorySelected;
 
   const AppDrawer({
