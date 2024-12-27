@@ -144,7 +144,6 @@ class AppDrawer extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(_capitalize(subcategory)),
-                      child: Text(subcategory),
                     ),
                   );
                 }),
