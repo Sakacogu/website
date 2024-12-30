@@ -31,7 +31,7 @@ class CategoryRow extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 30,
-                  vertical: 14,
+                  vertical: 18,
                 ),
           side: BorderSide(
             color:

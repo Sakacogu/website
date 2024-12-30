@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 70.0,
         leading: Builder(
           builder: (ctx) => IconButton(
             icon: const Icon(Icons.menu),
@@ -26,10 +27,28 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ),
-        title: Align(
-          alignment: Alignment.center,
-          child: TextButton(
-            onPressed: (){
+        title: Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 6.0),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Hverju ertu að leita að?',
+      filled: true,
+      fillColor: Colors.white,
+      prefixIcon: const Icon(Icons.search),
+      contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide.none,
+      ),
+      ),
+      ),
+      ),
+    ),
+    TextButton(
+    onPressed: (){
               Provider.of<CategoryProvider>(context, listen: false).updateCategory('0');
               Provider.of<CategoryProvider>(context, listen: false).updateSubcategory('Allar vörur');
             },
@@ -42,6 +61,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+  ],
         ),
       ),
       drawer: const AppDrawer(),
@@ -65,7 +85,7 @@ class HomeScreen extends StatelessWidget {
             } else {
               filteredProducts = products.where((p) =>
               p.id == selectedCategoryId &&
-                  p.subcategory.toLowerCase() == selectedSubcategory!.toLowerCase()).toList();
+                  p.subcategory.toLowerCase() == selectedSubcategory.toLowerCase()).toList();
             }
           }
 
