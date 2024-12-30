@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/widgets/subcategory_row.dart';
 import 'package:website/data/items.dart';
+import 'package:website/items/product.dart';
 import 'package:website/widgets/category_row.dart';
 import 'package:website/widgets/product_card.dart';
 import 'package:provider/provider.dart';
