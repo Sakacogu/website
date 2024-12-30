@@ -18,14 +18,16 @@ class SubcategoryButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
-          foregroundColor: isSelected ? Colors.white : Colors.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+          style: ElevatedButton.styleFrom(
+            backgroundColor:
+            isSelected ? Colors.grey : Colors.white,
+            foregroundColor:
+            isSelected ? Colors.white : Colors.black,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        ),
         onPressed: onPressed,
         child: Text(
           label,

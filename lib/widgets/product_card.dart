@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:website/items/product.dart';
+import 'package:website/pages/product_detail_page.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -12,7 +13,14 @@ class ProductCard extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () {
-          // Handle product tap
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    ProductDetailPage(
+                    product: product)
+            ),
+          );
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

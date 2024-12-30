@@ -1,81 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:website/pages/product_pages.dart';
 import 'package:website/widgets/menu_button.dart';
-import 'package:website/widgets/category_row.dart';
-import 'package:website/widgets/subcategory_buttons.dart';
-import 'package:website/items/product.dart';
+import 'package:website/widgets/subcategory_row.dart';
 import 'package:website/data/items.dart';
+import 'package:website/widgets/category_row.dart';
 import 'package:website/widgets/product_card.dart';
+import 'package:provider/provider.dart';
+import 'package:website/providers/category_provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String selectedCategoryId = '0';
-  String? selectedSubcategory;
-
-  late List<Product> displayedProducts;
-
-  @override
-  void initState() {
-    super.initState();
-    displayedProducts = List.from(products);
-  }
-
-  void updateCategory(String categoryId) {
-    setState(() {
-      selectedCategoryId = categoryId;
-      selectedSubcategory = null;
-      if (categoryId == '0') {
-        displayedProducts = List.from(products);
-      } else {
-        displayedProducts =
-            products.where((product) => product.id == categoryId).toList();
-      }
-    });
-  }
-
-  void updateSubcategory(String? subcategory) {
-    setState(() {
-      selectedSubcategory = subcategory;
-      if (subcategory == null || subcategory == 'Allar vörur') {
-        if (selectedCategoryId == '0') {
-          displayedProducts = List.from(products);
-        } else {
-          displayedProducts =
-              products.where((product) => product.id == selectedCategoryId).toList();
-        }
-      } else {
-        displayedProducts = products.where((product) {
-          return (selectedCategoryId == '0' || product.id == selectedCategoryId) &&
-              product.subcategory == subcategory;
-        }).toList();
-      }
-    });
-  }
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Builder(
-          builder: (context) => IconButton(
+          builder: (ctx) => IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              Scaffold.of(ctx).openDrawer();
             },
           ),
         ),
         title: Align(
           alignment: Alignment.center,
           child: TextButton(
-            onPressed: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
+            onPressed: (){
+              Provider.of<CategoryProvider>(context, listen: false).updateCategory('0');
+              Provider.of<CategoryProvider>(context, listen: false).updateSubcategory('Allar vörur');
             },
             child: Text(
               'Fatavörubúð',
@@ -88,77 +43,83 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      drawer: AppDrawer(
-        currentCategoryId: selectedCategoryId,
-        currentSubcategoryId: selectedSubcategory,
-        onCategorySelected: (categoryId) {
-          updateCategory(categoryId);
-          Navigator.pop(context);
-          if (categoryId == '0') {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
+      drawer: const AppDrawer(),
+      body: Consumer<CategoryProvider>(
+        builder: (context, categoryProvider, child) {
+          final selectedCategoryId = categoryProvider.selectedCategoryId;
+          final selectedSubcategory = categoryProvider.selectedSubcategory;
+
+          List<Product> filteredProducts;
+          if (selectedCategoryId == '0') {
+            if (selectedSubcategory == null || selectedSubcategory == 'Allar vörur') {
+              filteredProducts = List.from(products);
+            } else {
+              filteredProducts =
+                  products.where((p) => p.subcategory == selectedSubcategory).toList();
+            }
           } else {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Clothes(initialCategory: categoryId)),
-            );
+            if (selectedSubcategory == null || selectedSubcategory == 'Allar vörur') {
+              filteredProducts =
+                  products.where((p) => p.id == selectedCategoryId).toList();
+            } else {
+              filteredProducts = products.where((p) =>
+              p.id == selectedCategoryId &&
+                  p.subcategory.toLowerCase() == selectedSubcategory!.toLowerCase()).toList();
+            }
           }
-        },
-        onSubcategorySelected: (subcategoryId) {
-          updateSubcategory(subcategoryId == 'Allar vörur' ? null : subcategoryId);
-          Navigator.pop(context);
-        },
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-            child: CategoryRow(
-              selectedCategoryId: selectedCategoryId,
-              onCategorySelected: (categoryId) {
-                updateCategory(categoryId);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            child: CategoryRowSubcategory(
-              selectedSubcategory: selectedSubcategory,
-              onSubcategorySelected: (subcategoryId) {
-                updateSubcategory(subcategoryId);
-              },
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: displayedProducts.isNotEmpty
-                  ? GridView.builder(
-                itemCount: displayedProducts.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 3 / 4,
-                ),
-                itemBuilder: (context, index) {
-                  final product = displayedProducts[index];
-                  return ProductCard(product: product);
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CategoryRow(
+                selectedCategoryId: selectedCategoryId,
+                onCategorySelected: (categoryId) {
+                  categoryProvider.updateCategory(categoryId);
                 },
-              )
-                  : const Center(
-                child: Text(
-                  'Engar vörur fundust.',
-                  style: TextStyle(fontSize: 18),
+              ),
+
+              const SizedBox(height: 10),
+
+              if (selectedCategoryId != '0') ...[
+                CategoryRowSubcategory(
+                  selectedSubcategory: selectedSubcategory,
+                  onSubcategorySelected: (subcat) {
+                    categoryProvider.updateSubcategory(
+                        subcat == 'Allar vörur' ? null : subcat);
+                  },
+                ),
+
+                const SizedBox(height: 10),
+
+              ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: filteredProducts.isNotEmpty
+                      ? GridView.builder(
+                    itemCount: filteredProducts.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 3 / 4,
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = filteredProducts[index];
+                      return ProductCard(product: product);
+                    },
+                  )
+                      : const Center(
+                    child: Text(
+                      'Engar vörur fundust.',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }

@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:website/data/categories.dart';
-import 'package:website/pages/home_screen.dart';
-import 'package:website/pages/product_pages.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:website/providers/category_provider.dart';
 
 class AppDrawer extends StatelessWidget {
-  final String currentCategoryId;
-  final String? currentSubcategoryId;
-  final Function(String) onCategorySelected;
-  final Function(String?) onSubcategorySelected;
-
   const AppDrawer({
     super.key,
-    required this.currentCategoryId,
-    required this.currentSubcategoryId,
-    required this.onCategorySelected,
-    required this.onSubcategorySelected,
   });
 
   @override
   Widget build(BuildContext context) {
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+    final currentCategoryId = categoryProvider.selectedCategoryId;
+    final currentSubcategoryId = categoryProvider.selectedSubcategory;
+
     return Container(
-      margin: const EdgeInsets.fromLTRB (80, 80, 900, 350),
+      margin: const EdgeInsets.fromLTRB(80, 80, 1000, 250),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white60,
         borderRadius: BorderRadius.circular(18),
         boxShadow: const [
           BoxShadow(
@@ -37,13 +32,22 @@ class AppDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 69, 69, 69),
+              color: Color.fromARGB(200, 69, 69, 69),
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(18),
-                  topRight: Radius.circular(18)
+                topLeft: Radius.circular(18),
+                topRight: Radius.circular(18),
               ),
             ),
             child: Center(
+              child: TextButton(
+    onPressed: (){
+      categoryProvider.updateCategory('0');
+      Navigator.pop(context);
+    },
+    style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+                minimumSize: const Size(0, 0),
+              ),
               child: Text(
                 'Fatavörubúð',
                 style: GoogleFonts.besley(
@@ -54,6 +58,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
+    ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SingleChildScrollView(
@@ -65,33 +70,21 @@ class AppDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
-                        foregroundColor: isSelected ? Colors.white : Colors.black,
+                        backgroundColor:
+                        isSelected ? Colors.grey : Colors.white,
+                        foregroundColor:
+                        isSelected ? Colors.white : Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
                       ),
                       onPressed: () {
-                        onCategorySelected(category['categoryId']);
-                        Navigator.pop(context);
-
-                        if (category['categoryId'] == '0') {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
-                            ),
-                          );
-                        } else {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Clothes(initialCategory: category['categoryId']),
-                            ),
-                          );
-                        }
-                      },
+                      categoryProvider.updateCategory(category['categoryId']);
+                    },
                       child: Text(category['label']),
                     ),
                   );
@@ -99,29 +92,38 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16,),
+
+          const SizedBox(height: 16),
+
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 56.0),
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: (currentSubcategoryId == null || currentSubcategoryId == 'All')
-                        ? Colors.blue
-                        : Colors.grey[300],
-                    foregroundColor: (currentSubcategoryId == null || currentSubcategoryId == 'All')
+                    backgroundColor:
+                    (currentSubcategoryId == null ||
+                        currentSubcategoryId == 'Allar vörur')
+                        ? Colors.grey
+                        : Colors.white,
+                    foregroundColor:
+                    (currentSubcategoryId == null ||
+                        currentSubcategoryId == 'Allar vörur')
                         ? Colors.white
                         : Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                   ),
                   onPressed: () {
-                    onSubcategorySelected('All');
+                    categoryProvider.updateSubcategory(null);
                     Navigator.pop(context);
                   },
-                  child: const Text('All'),
+                  child: const Text('Allar vörur'),
                 ),
 
                 const SizedBox(height: 8),
@@ -132,21 +134,26 @@ class AppDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
-                        foregroundColor: isSelected ? Colors.white : Colors.black,
+                        backgroundColor:
+                        isSelected ? Colors.grey
+                        : Colors.white,
+                        foregroundColor:
+                        isSelected ? Colors.white : Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
                       ),
                       onPressed: () {
-                        onSubcategorySelected(subcategory);
-                        Navigator.pop(context);
+                        categoryProvider.updateSubcategory(subcategory);
                       },
                       child: Text(_capitalize(subcategory)),
                     ),
                   );
-                }),
+                })
               ],
             ),
           ),
