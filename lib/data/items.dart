@@ -62,7 +62,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/928000/pexels-photo-928000.jpeg',
     description: 'Snyrtilegir skór, tilvalnir í hvaða tilefni sem er!',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -71,7 +71,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/965324/pexels-photo-965324.jpeg',
     description: 'Þægilegir hversdags skór.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -80,7 +80,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1805412/pexels-photo-1805412.jpeg',
     description: 'Létt og hentugt veski sem andar vel.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -107,7 +107,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg',
     description: 'Þægilegur skófatnaður til daglegra nota.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -116,7 +116,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/932401/pexels-photo-932401.jpeg',
     description: 'Háglæsileg, stílhrein handtaska.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -197,7 +197,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/963696/pexels-photo-963696.jpeg',
     description: 'Mjúkt og notalegt sett.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -269,7 +269,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/852860/pexels-photo-852860.jpeg',
     description: 'Rómantískt og náttúrulegt útlit.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -350,7 +350,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/346751/pexels-photo-346751.jpeg',
     description: 'Klassískir, léttir og þægilegir sumar skór.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '1',
@@ -378,7 +378,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg',
     description: 'Vandaðir skór fyrir hversdags og formleg tilefni.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -405,7 +405,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1306248/pexels-photo-1306248.jpeg',
     description: 'Frjálslegir og eftirtektarverðir skór.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -477,7 +477,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg',
     description: 'Léttur sumarsvipur.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -495,7 +495,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg',
     description: 'Mjög vinsælir og þægilegir strigaskór.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -504,7 +504,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/845457/pexels-photo-845457.jpeg',
     description: 'Hentugt fyrir sumarið.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -513,7 +513,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1078851/pexels-photo-1078851.jpeg',
     description: 'Klassískt útlit með blátintu gleri.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -549,7 +549,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/29822696/pexels-photo-29822696.jpeg',
     description: 'Svalt útlit.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -585,7 +585,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/243917/pexels-photo-243917.jpeg',
     description: 'Sterkir skór sem henta vel í snjóinn en líka hversdagsleikan.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '2',
@@ -657,9 +657,8 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/7955547/pexels-photo-7955547.jpeg',
     description: 'Töff útlit.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
-
 
   Product(
     id: '3',
@@ -668,7 +667,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/29857177/pexels-photo-29857177.jpeg',
     description: 'Fallegir skór sem passa við flest fín föt.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '3',
@@ -677,7 +676,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/29822083/pexels-photo-29822083.jpeg',
     description: 'Hlý eyrnaskjól fyrir vetrarveðrið.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '3',
@@ -821,7 +820,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/10557069/pexels-photo-10557069.jpeg',
     description: 'Skemmtilegir litríkir skór.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '3',
@@ -911,7 +910,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/2387702/pexels-photo-2387702.jpeg',
     description: 'Gleði og fjör í vatnsheldum skóm.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '3',
@@ -956,7 +955,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1650281/pexels-photo-1650281.jpeg',
     description: 'Litagleði og krúttlegt útlit fyrir börn.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '3',
@@ -1001,7 +1000,7 @@ final List<Product> products = [
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/25158812/pexels-photo-25158812.jpeg',
     description: 'Fínni skór fyrir ýmis tilefni.',
-    subcategory: 'fylgihlutir',
+    subcategory: 'skór og fylgihlutir',
   ),
   Product(
     id: '3',
