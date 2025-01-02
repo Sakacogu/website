@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CategoryProvider with ChangeNotifier {
-  String _selectedCategoryId = '0';
+  String? _selectedCategoryId;
   String? _selectedSubcategory;
   String _searchQuery = '';
 
-  String get selectedCategoryId => _selectedCategoryId;
+  String? get selectedCategoryId => _selectedCategoryId;
   String? get selectedSubcategory => _selectedSubcategory;
   String get searchQuery => _searchQuery;
 
-  void updateCategory(String categoryId) {
-    _selectedCategoryId = categoryId;
+  void updateCategory(String? newCategory) {
+    _selectedCategoryId = newCategory;
     notifyListeners();
   }
 
-  void updateSubcategory(String? subcategory) {
-    _selectedSubcategory = subcategory;
+  void updateSubcategory(String? newSubcategory) {
+    _selectedSubcategory = newSubcategory;
     notifyListeners();
   }
 
@@ -25,8 +25,8 @@ class CategoryProvider with ChangeNotifier {
   }
 
   void resetSelections() {
-    _selectedCategoryId = '0';
-    _selectedSubcategory = null;
+    _selectedCategoryId;
+    _selectedSubcategory;
     _searchQuery = '';
     notifyListeners();
   }

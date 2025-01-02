@@ -49,6 +49,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     final product = widget.product;
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double horizontalPaddingLeft = 20.0;
+    double horizontalPaddingRight = screenWidth * 0.70;
+    double verticalPaddingTop = 5.0;
+    double verticalPaddingBottom = 0.0;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80.0,
@@ -66,8 +72,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               child: TextButton(
                 onPressed: () {
                   Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst);
-                  Provider.of<CategoryProvider>(context, listen: false).updateCategory('0');
-                  Provider.of<CategoryProvider>(context, listen: false).updateSubcategory('Allar vörur');
+                  Provider.of<CategoryProvider>(context, listen: false).updateCategory(null);
+                  Provider.of<CategoryProvider>(context, listen: false).updateSubcategory(null);
                 },
                 child: Text(
                   'Fatavörubúð',
@@ -80,9 +86,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               ),
             ),
             Positioned(
-              left: 16.0,
-              right: 16.0,
-              top: 40.0,
+              left: horizontalPaddingLeft,
+              right: horizontalPaddingRight,
+              top: verticalPaddingTop,
+              bottom: verticalPaddingBottom,
               child: SizedBox(
                 height: 40,
                 child: TextField(
@@ -129,13 +136,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               return Column(
                 children: [
                   CategoryRow(
-                    selectedCategoryId: selectedCategoryId,
-                    onCategorySelected: (categoryId) {
-                      categoryProvider.updateCategory(categoryId);
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => const HomeScreen()),
-                            (Route<dynamic> route) => false,
+                    selectedCategoryId: selectedCategoryId ?? '',
+                    onCategorySelected: (catId) {
+                      categoryProvider.updateCategory(
+                          catId.isEmpty ? null : catId
                       );
                     },
                   ),
@@ -145,7 +149,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       selectedSubcategory: selectedSubcategory,
                       onSubcategorySelected: (subcat) {
                         categoryProvider.updateSubcategory(
-                            subcat == 'Allar vörur' ? null : subcat);
+                            subcat.isEmpty ? null : subcat);
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -165,14 +169,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Product Image
                   Expanded(
                     flex: 1,
                     child: Image.network(
                       product.imageUrl,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                        return const Center(child: Icon(Icons.error, size: 50));
+                        return const Center(
+                            child: Icon(
+                                Icons.error,
+                                size: 50
+                            ),
+                        );
                       },
                     ),
                   ),
@@ -220,7 +228,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Colors.grey,
                                   foregroundColor: Colors.white,
                                 ),
                                 child: const Text('Bæta í körfu'),
@@ -230,15 +238,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 onPressed: () {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('${product.name} saved!'),
+                                      content: Text('${product.name} vistað!'),
                                     ),
                                   );
+                                  setState(() {
+                                    product.saveCount ++;
+                                  });
                                 },
                                 style: OutlinedButton.styleFrom(
-                                  foregroundColor: Colors.blue,
-                                  side: const BorderSide(color: Colors.blue),
+                                  foregroundColor: Colors.red,
+                                  side: const BorderSide(color: Colors.white),
                                 ),
-                                child: const Text('Save'),
+                                child: const Text('Vista'),
                               ),
                             ],
                           ),

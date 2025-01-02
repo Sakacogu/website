@@ -1,5 +1,13 @@
 import 'package:website/items/product.dart';
 
+List<Product> getPopularProducts() {
+  final List<Product> sorted = List.from(products);
+  sorted.sort((a, b) => b.saveCount.compareTo(a.saveCount));
+
+  final int count = sorted.length < 15 ? sorted.length : 15;
+  return sorted.sublist(0, count);
+}
+
 final List<Product> products = [
   Product(
     id: '1',
@@ -9,6 +17,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg',
     description: 'Sæt skyrta með doppum.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -18,6 +27,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg',
     description: 'Létt skyrta í einföldu sniði.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -27,6 +37,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1631181/pexels-photo-1631181.jpeg',
     description: 'Fallegt pils með litríku mynstri.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -36,6 +47,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1839904/pexels-photo-1839904.jpeg',
     description: 'Skemmtileg skyrta í björtum litum.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -45,6 +57,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2085118/pexels-photo-2085118.jpeg',
     description: 'Nútímalegt pils sem hentar hversdags og við sérstök tilefni.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -54,6 +67,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1844012/pexels-photo-1844012.jpeg',
     description: 'Fallegur bolur með svörtu og gulu mynstri.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -63,6 +77,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/928000/pexels-photo-928000.jpeg',
     description: 'Snyrtilegir skór, tilvalnir í hvaða tilefni sem er!',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -72,6 +87,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/965324/pexels-photo-965324.jpeg',
     description: 'Þægilegir hversdags skór.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -81,6 +97,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1805412/pexels-photo-1805412.jpeg',
     description: 'Létt og hentugt veski sem andar vel.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -90,6 +107,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/904117/pexels-photo-904117.jpeg',
     description: 'Vandaður kjóll sem hentar við ýmis tilefni.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -99,6 +117,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg',
     description: 'Frjálsleg útivera í gallapilsi.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -108,6 +127,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg',
     description: 'Þægilegur skófatnaður til daglegra nota.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -117,6 +137,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/932401/pexels-photo-932401.jpeg',
     description: 'Háglæsileg, stílhrein handtaska.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -126,6 +147,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/975006/pexels-photo-975006.jpeg',
     description: 'Léttur og þægilegur fatnaður með flottu mynstri.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -135,6 +157,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/247204/pexels-photo-247204.jpeg',
     description: 'Flott vesti sem hægt er að stíla með ýmsu.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -144,6 +167,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1877736/pexels-photo-1877736.jpeg',
     description: 'Fíngert sett í jakkafata stíl.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -153,6 +177,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1004642/pexels-photo-1004642.jpeg',
     description: 'Einfaldur hlýrabolur sem passar við flestar buxur.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -162,6 +187,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/932417/pexels-photo-932417.jpeg',
     description: 'Fágaður jakki fyrir flott tilefni.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -171,6 +197,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/10625395/pexels-photo-10625395.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description: 'Frábær í veturinn.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -180,6 +207,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2608344/pexels-photo-2608344.jpeg',
     description: 'Sætur, hversdagslegur bolur.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -189,6 +217,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/953266/pexels-photo-953266.jpeg',
     description: 'Jakkafata buxur og vesti, mjög flott sett.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -198,6 +227,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/963696/pexels-photo-963696.jpeg',
     description: 'Mjúkt og notalegt sett.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -207,6 +237,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1857000/pexels-photo-1857000.jpeg',
     description: 'Litríkt og skemmtilegt útlit fyrir vor og sumar.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -216,6 +247,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/3679044/pexels-photo-3679044.jpeg',
     description: 'Töff hönnun fyrir þá sem vilja setja punktinn yfir i-ið.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -225,6 +257,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2269880/pexels-photo-2269880.jpeg',
     description: 'Fersk samsetning fyrir einstök tækifæri.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -234,6 +267,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2331101/pexels-photo-2331101.jpeg',
     description: 'Einfalt til hversdagsnota.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -243,6 +277,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1936850/pexels-photo-1936850.jpeg',
     description: 'Handhægur og flottur kjóll.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -252,6 +287,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/936084/pexels-photo-936084.jpeg',
     description: 'Þægilegur í helgarbröltið.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -261,6 +297,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg',
     description: 'Tískulegt fyrir hlýja sumardaga.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -270,6 +307,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/852860/pexels-photo-852860.jpeg',
     description: 'Rómantískt og náttúrulegt útlit.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -279,6 +317,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/859191/pexels-photo-859191.jpeg',
     description: 'Krúttlegur kjóll í fallegu mynstri.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -288,6 +327,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/720606/pexels-photo-720606.jpeg',
     description: 'Lifandi litur sem poppar upp á útlitið.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -297,6 +337,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/15647635/pexels-photo-15647635/free-photo-of-a-man-in-a-blue-shirt-and-white-pants-is-jumping-on-a-blue-and-white-umbrella.jpeg?auto=compress&cs=tinysrgb&w=800',
     description: 'Nútímaleg peysa sem er auðvelt að para saman við annan fatnað.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -306,6 +347,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29864717/pexels-photo-29864717.jpeg',
     description: 'Gamaldags en eins og ekkert annað.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -315,6 +357,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29852347/pexels-photo-29852347.jpeg',
     description: 'Mjúk og hlý í búðarröltið.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -324,6 +367,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/247298/pexels-photo-247298.jpeg',
     description: 'Léttur og þægilegur jakki sem passar við hvað sem er.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -333,6 +377,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/58592/pexels-photo-58592.jpeg',
     description: 'Þægileg hversdags skyrta.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -342,6 +387,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/956724/pexels-photo-956724.jpeg',
     description: 'Léttur og svalandi fyrir sumarið.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -351,6 +397,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/346751/pexels-photo-346751.jpeg',
     description: 'Klassískir, léttir og þægilegir sumar skór.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '1',
@@ -360,6 +407,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857348/pexels-photo-29857348.jpeg',
     description: 'Hlýlegur og glæsilegur pels fyrir vetrarveður.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
 
   Product(
@@ -370,6 +418,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/842811/pexels-photo-842811.jpeg',
     description: 'Stílhreint útlit fyrir veislurnar.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -379,6 +428,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg',
     description: 'Vandaðir skór fyrir hversdags og formleg tilefni.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -388,6 +438,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/845434/pexels-photo-845434.jpeg',
     description: 'Þægileg og flott fyrir daglegt líf.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -397,6 +448,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg',
     description: 'Sterkur litur sem setur svip á daginn.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -406,6 +458,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1306248/pexels-photo-1306248.jpeg',
     description: 'Frjálslegir og eftirtektarverðir skór.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -415,6 +468,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/878358/pexels-photo-878358.jpeg',
     description: 'Unglegur stíll fyrir hversdagsnotkun.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -424,6 +478,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1018911/pexels-photo-1018911.jpeg',
     description: 'Unglegur stíll fyrir hversdagsnotkun.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -433,6 +488,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/297933/pexels-photo-297933.jpeg',
     description: 'Sígild skyrta sem passar við jakkaföt eða gallabuxur.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -442,6 +498,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/450212/pexels-photo-450212.jpeg',
     description: 'Fínlegur klæðnaður fyrir formleg tilefni.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -451,6 +508,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1192601/pexels-photo-1192601.jpeg',
     description: 'Sportlegur jakki sem hentar vel í hreyfingu eða hversdagsleikann.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -460,6 +518,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2709563/pexels-photo-2709563.jpeg',
     description: 'Fágað útlit fyrir sérstök tilefni.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -469,6 +528,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6765066/pexels-photo-6765066.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description: 'Flott í samsetningu með jakkafötum.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -478,6 +538,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg',
     description: 'Léttur sumarsvipur.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -487,6 +548,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/634785/pexels-photo-634785.jpeg',
     description: 'Hentar vel fyrir ævintýraferðir og tískuljósmyndun;).',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -496,6 +558,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg',
     description: 'Mjög vinsælir og þægilegir strigaskór.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -505,6 +568,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/845457/pexels-photo-845457.jpeg',
     description: 'Hentugt fyrir sumarið.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -514,6 +578,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1078851/pexels-photo-1078851.jpeg',
     description: 'Klassískt útlit með blátintu gleri.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -523,6 +588,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/936023/pexels-photo-936023.jpeg',
     description: 'Rifnar, ekta tísku, gallabuxur.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -532,6 +598,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29863525/pexels-photo-29863525.jpeg',
     description: 'Áberandi feldur sem grípur alla athygli.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -541,6 +608,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29852347/pexels-photo-29852347.jpeg',
     description: 'Konan sleppir þér ekki í þessu. Mjög kósý.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -550,6 +618,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29822696/pexels-photo-29822696.jpeg',
     description: 'Svalt útlit.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -559,6 +628,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6037685/pexels-photo-6037685.jpeg',
     description: 'Stílhreinn og hlýr leður jakki fyrir hvaða tilefni sem er.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -568,6 +638,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/7026411/pexels-photo-7026411.jpeg',
     description: 'Þykkar og hlýjar síðúlpur fyrir veturinn.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -577,6 +648,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/14970274/pexels-photo-14970274.jpeg',
     description: 'Fóðraður galla jakki í bóndastörfin.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -586,6 +658,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/243917/pexels-photo-243917.jpeg',
     description: 'Sterkir skór sem henta vel í snjóinn en líka hversdagsleikan.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -595,6 +668,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/26987457/pexels-photo-26987457.jpeg',
     description: 'Taktikal útlit með sterka teygju, tilvalið í vinnuna.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -604,6 +678,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/5264736/pexels-photo-5264736.jpeg',
     description: 'Léttur og fínn frakki fyrir djammið',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -613,6 +688,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/375880/pexels-photo-375880.jpeg',
     description: 'þykkur og hlýr bómullar trefill með fallegu mynstri.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -622,6 +698,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2144383/pexels-photo-2144383.jpeg',
     description: 'Óformleg, notaleg flík fyrir skólan.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -631,6 +708,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6667782/pexels-photo-6667782.jpeg',
     description: 'Einföld og hlý kápa fyrir snjóinn .',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -640,6 +718,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/10664875/pexels-photo-10664875.jpeg',
     description: 'Prjónuð skíðahúfa.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -649,6 +728,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6517911/pexels-photo-6517911.jpeg',
     description: 'Tilvalin fyrir hátíðina.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '2',
@@ -658,6 +738,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/7955547/pexels-photo-7955547.jpeg',
     description: 'Töff útlit.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
 
   Product(
@@ -668,6 +749,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857177/pexels-photo-29857177.jpeg',
     description: 'Fallegir skór sem passa við flest fín föt.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -677,6 +759,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29822083/pexels-photo-29822083.jpeg',
     description: 'Hlý eyrnaskjól fyrir vetrarveðrið.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -686,6 +769,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857626/pexels-photo-29857626.jpeg',
     description: 'Sætur kjóll sem hentar leik og hlátri.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -695,6 +779,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857628/pexels-photo-29857628.jpeg',
     description: 'Falleg og hlý vetrar kápa.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -704,6 +789,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857624/pexels-photo-29857624.jpeg',
     description: 'þægilegar víðar gallabuxur.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -713,6 +799,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/236215/pexels-photo-236215.jpeg?auto=compress&cs=tinysrgb&w=800',
     description: 'Töff gallastíll fyrir allan aldur.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -722,6 +809,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857622/pexels-photo-29857622.jpeg',
     description: 'Falleg og hlý stígvel.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -731,6 +819,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/4711735/pexels-photo-4711735.jpeg',
     description: 'Stílhrein fatnaður.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -740,6 +829,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/4714773/pexels-photo-4714773.jpeg',
     description: 'Auðveldur til leikja og útivistar.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -749,6 +839,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/7055295/pexels-photo-7055295.jpeg',
     description: 'Þægilegur í allskyns hreyfingu.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -758,6 +849,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6201971/pexels-photo-6201971.jpeg',
     description: 'Ljúfur og frjáls stíll.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -767,6 +859,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6616173/pexels-photo-6616173.jpeg',
     description: 'Mjög vinsæll kósý galli.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -776,6 +869,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/8384996/pexels-photo-8384996.jpeg',
     description: 'Fullkomið fyrir afmæli eða partý.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -785,6 +879,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/8141976/pexels-photo-8141976.jpeg',
     description: 'Skemmtileg flík fyrir öll tilefni.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -794,6 +889,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29822084/pexels-photo-29822084.jpeg',
     description: 'Stílhreinn jakki sem virkar með flest öllu.',
     subcategory: 'yfirhafnir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -803,6 +899,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29822084/pexels-photo-29822084.jpeg',
     description: 'Víðar og þægilegar.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -812,6 +909,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/933186/pexels-photo-933186.jpeg',
     description: 'Krúttlegur köflóttur kjóll inní sumarið.',
     subcategory: 'kjólar',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -821,6 +919,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/10557069/pexels-photo-10557069.jpeg',
     description: 'Skemmtilegir litríkir skór.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -830,6 +929,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/258303/pexels-photo-258303.jpeg',
     description: 'Hlý og mjúk peysa með kisum framan á. Tilvalið í skólann.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -839,6 +939,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/6823110/pexels-photo-6823110.jpeg',
     description: 'Gulur bómullar heilgalli fyrir þau yngstu.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -848,6 +949,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29863725/pexels-photo-29863725.jpeg',
     description: 'Þykkur og vandaður bolur með ápressað mynstur.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -857,6 +959,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29863250/pexels-photo-29863250.jpeg',
     description: 'Mjúk og hlý vetrarpeysa',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -866,6 +969,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857634/pexels-photo-29857634.jpeg',
     description: 'Sætur fatnaður sem gleður alla í kring.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -875,6 +979,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/29857631/pexels-photo-29857631.jpeg',
     description: 'Skemmtileg blóma skreytt skyrta fyrir útlandaferðina.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -884,6 +989,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/5560026/pexels-photo-5560026.jpeg',
     description: 'Notaleg í skólann.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -893,6 +999,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/3965553/pexels-photo-3965553.jpeg',
     description: 'Mjúkt og hentugt fyrir haustveður.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -902,6 +1009,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/5859804/pexels-photo-5859804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description: 'Smekklegt og þægilegt, hentar leik og ról.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -911,6 +1019,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/2387702/pexels-photo-2387702.jpeg',
     description: 'Gleði og fjör í vatnsheldum skóm.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -920,6 +1029,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1068209/pexels-photo-1068209.jpeg',
     description: 'Klæðnaður sem hentar leik og kátínu.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -929,6 +1039,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/4715312/pexels-photo-4715312.jpeg',
     description: 'Þægilegar hversdagsbuxur.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -938,6 +1049,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/969373/pexels-photo-969373.jpeg',
     description: 'Hreinleg og klassísk skyrta.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -947,15 +1059,17 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/13198517/pexels-photo-13198517.jpeg',
     description: 'Tilvalið fyrir skólann.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
-    name: 'Andlit málað',
-    color: 'ljós blár og hvítur',
+    name: 'Slaufa',
+    color: 'rauð',
     price: 100,
     imageUrl: 'https://images.pexels.com/photos/1650281/pexels-photo-1650281.jpeg',
     description: 'Litagleði og krúttlegt útlit fyrir börn.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -965,6 +1079,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/1620812/pexels-photo-1620812.jpeg',
     description: 'Skemtileg skyrta til að breyta til.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -974,6 +1089,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/3121075/pexels-photo-3121075.jpeg',
     description: 'Einföld og fín skyrta.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -983,6 +1099,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/25158809/pexels-photo-25158809.jpeg',
     description: 'Flottar buxur fyrir töffarana.',
     subcategory: 'buxur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -992,6 +1109,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/25158809/pexels-photo-25158809.jpeg',
     description: 'Hentar í öll tilefni.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -1001,6 +1119,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/25158812/pexels-photo-25158812.jpeg',
     description: 'Fínni skór fyrir ýmis tilefni.',
     subcategory: 'skór og fylgihlutir',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -1010,6 +1129,7 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/25158812/pexels-photo-25158812.jpeg',
     description: 'Þægileg og flott "oversize" skyrta.',
     subcategory: 'skyrtur',
+    saveCount: 0,
   ),
   Product(
     id: '3',
@@ -1019,5 +1139,6 @@ final List<Product> products = [
     imageUrl: 'https://images.pexels.com/photos/25158801/pexels-photo-25158801.jpeg',
     description: 'Ferskur stíll með skemmtilega mynd.',
     subcategory: 'peysur',
+    saveCount: 0,
   ),
 ];
