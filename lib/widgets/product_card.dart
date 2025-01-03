@@ -10,6 +10,10 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0)
+      ),
+      margin: EdgeInsets.zero,
       elevation: 2,
       child: InkWell(
         onTap: () {
@@ -45,13 +49,6 @@ class ProductCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text('${product.price} kr'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                product.color,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
             ),
             const SizedBox(height: 8),
           ],

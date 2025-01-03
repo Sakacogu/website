@@ -9,6 +9,7 @@ import 'package:website/widgets/product_card.dart';
 import 'package:provider/provider.dart';
 import 'package:website/providers/category_provider.dart';
 import 'package:website/pages/products_screen.dart';
+import 'package:website/widgets/app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -43,12 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    double screenWidth = MediaQuery.of(context).size.width;
-    double horizontalPaddingLeft = 20.0;
-    double horizontalPaddingRight = screenWidth * 0.70;
-    double verticalPaddingTop = 5.0;
-    double verticalPaddingBottom = 0.0;
-
     final popularItems = getPopularProducts();
     final category1Items = _categoryItems('1');
     final category2Items = _categoryItems('2');
@@ -56,74 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       drawer: const AppDrawer(),
-      appBar: AppBar(
-        toolbarHeight: 70.0,
-        leading: Builder(
-          builder: (ctx) => IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(ctx).openDrawer();
-            },
-          ),
-        ),
-        title: Stack(
-          children: [
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.popUntil(context, (route) => route.isFirst);
-                  final categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
-                  categoryProvider.updateCategory(null);
-                  categoryProvider.updateSubcategory(null);
-                },
-                child: Text(
-                  'Fatavörubúð',
-                  style: GoogleFonts.besley(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: horizontalPaddingLeft,
-              right: horizontalPaddingRight,
-              top: verticalPaddingTop,
-              bottom: verticalPaddingBottom,
-              child: SizedBox(
-              height: 40,
-              child: TextField(
-                controller: _searchController,
-                onChanged: _onSearchChanged,
-                decoration: InputDecoration(
-                  hintText: 'Hverju ertu að leita að?',
-                  filled: true,
-                  fillColor: Colors.white,
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: _searchController.text.isNotEmpty
-                      ? IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      _searchController.clear();
-                      Provider.of<CategoryProvider>(context, listen: false)
-                          .updateSearchQuery('');
-                      setState(() {});
-                    },
-                  )
-                      : null,
-                  contentPadding:
-                  const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-            ),
-            ),
-          ],
-        ),
+      appBar: MyAppBar(
+        showSearch: true,
+        searchController: _searchController,
+        onSearchChanged: (value) {
+
+        },
       ),
 
       body: SingleChildScrollView(
@@ -158,7 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 18),
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 10
+              ),
               child: Text(
                 'Vinsælar vörur',
                 style: Theme.of(context).textTheme.headlineSmall,
@@ -166,14 +102,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: 220,
+              height: 350,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: popularItems.length,
                 itemBuilder: (context, index) {
                   final product = popularItems[index];
                   return SizedBox(
-                    width: 160,
+                    width: 270,
                     child: ProductCard(product: product),
                   );
                 },
@@ -199,7 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Product> _categoryItems(String id) {
     return products.where((p) => p.id == id).toList();
   }
-  Widget _buildCategoryRow(BuildContext context, String categoryTitle, List<Product> items) {
+  Widget _buildCategoryRow(
+      BuildContext context,
+      String categoryTitle,
+      List<Product> items) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -212,14 +151,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 8),
         SizedBox(
-          height: 220,
+          height: 350,
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             scrollDirection: Axis.horizontal,
             itemCount: items.length,
             itemBuilder: (context, index) {
               final product = items[index];
               return SizedBox(
-                width: 160,
+                width: 270,
                 child: ProductCard(product: product),
               );
             },

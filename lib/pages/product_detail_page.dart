@@ -9,6 +9,7 @@ import 'package:website/widgets/menu_button.dart';
 import 'package:website/pages/home_screen.dart';
 import 'package:website/widgets/subcategory_row.dart';
 import 'package:website/widgets/category_row.dart';
+import 'package:website/widgets/app_bar.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
@@ -50,80 +51,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     final product = widget.product;
 
-    double screenWidth = MediaQuery.of(context).size.width;
-    double horizontalPaddingLeft = 20.0;
-    double horizontalPaddingRight = screenWidth * 0.70;
-    double verticalPaddingTop = 5.0;
-    double verticalPaddingBottom = 0.0;
-
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80.0,
-        leading: Builder(
-          builder: (ctx) => IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(ctx).openDrawer();
-            },
-          ),
-        ),
-        title: Stack(
-          children: [
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst);
-                  Provider.of<CategoryProvider>(context, listen: false).updateCategory(null);
-                  Provider.of<CategoryProvider>(context, listen: false).updateSubcategory(null);
-                },
-                child: Text(
-                  'Fatavörubúð',
-                  style: GoogleFonts.besley(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: horizontalPaddingLeft,
-              right: horizontalPaddingRight,
-              top: verticalPaddingTop,
-              bottom: verticalPaddingBottom,
-              child: SizedBox(
-                height: 40,
-                child: TextField(
-                  controller: _searchController,
-                  onChanged: _onSearchChanged,
-                  decoration: InputDecoration(
-                    hintText: 'Hverju ertu að leita að?',
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: _searchController.text.isNotEmpty
-                        ? IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: () {
-                        _searchController.clear();
-                        Provider.of<CategoryProvider>(context, listen: false)
-                            .updateSearchQuery('');
-                        setState(() {});
-                      },
-                    )
-                        : null,
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 0.0, horizontal: 10.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      appBar: MyAppBar(
+        showSearch: true,
+        searchController: _searchController,
+        onSearchChanged: (value) {
+
+        },
       ),
       drawer: const AppDrawer(),
       body: Column(
@@ -145,7 +79,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     },
                   ),
                   const SizedBox(height: 10),
-                  if (selectedCategoryId != '0') ...[
+
+                  if (selectedCategoryId != null || selectedCategoryId == '0') ...[
                     CategoryRowSubcategory(
                       selectedSubcategory: selectedSubcategory,
                       onSubcategorySelected: (subcat) {

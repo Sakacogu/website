@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:website/pages/product_detail_page.dart';
 import 'package:website/providers/category_provider.dart';
 import 'package:website/pages/products_screen.dart';
+import 'package:website/pages/home_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -42,10 +43,16 @@ class AppDrawer extends StatelessWidget {
             ),
             child: Center(
               child: TextButton(
-    onPressed: (){
-      categoryProvider.updateCategory('0');
-      Navigator.pop(context);
-    },
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                          (Route<dynamic> route) => false
+                  );
+                  final categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
+                  categoryProvider.updateCategory(null);
+                  categoryProvider.updateSubcategory(null);
+                },
     style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
                 minimumSize: const Size(0, 0),
@@ -104,13 +111,11 @@ class AppDrawer extends StatelessWidget {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                    (currentSubcategoryId == null ||
-                        currentSubcategoryId == 'Allar vörur')
+                    (currentSubcategoryId == 'Allar vörur')
                         ? Colors.grey
                         : Colors.white,
                     foregroundColor:
-                    (currentSubcategoryId == null ||
-                        currentSubcategoryId == 'Allar vörur')
+                    (currentSubcategoryId == 'Allar vörur')
                         ? Colors.white
                         : Colors.black,
                     shape: RoundedRectangleBorder(
@@ -122,8 +127,17 @@ class AppDrawer extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    categoryProvider.updateSubcategory(null);
+                    categoryProvider.updateSubcategory('Allar vörur');
                     Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ProductsScreen(
+                          initialCategory: categoryProvider.selectedCategoryId ?? '0',
+                          initialSubcategory: 'Allar vörur',
+                        ),
+                      ),
+                    );
                   },
                   child: const Text('Allar vörur'),
                 ),
@@ -152,12 +166,13 @@ class AppDrawer extends StatelessWidget {
                       onPressed: () {
                         categoryProvider.updateSubcategory(subcategory);
                         Navigator.pop(context);
+
+                        final currentCat = categoryProvider.selectedCategoryId;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (_) => ProductsScreen(
-                              initialCategory: categoryProvider.selectedCategoryId,
-                              initialSubcategory: categoryProvider.selectedSubcategory,
+                              initialCategory: currentCat == null ? null : currentCat,
                         ),
                         ),
                         );
