@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:website/items/product.dart';
+import 'package:website/pages/products_screen.dart';
 import 'package:website/providers/category_provider.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/pages/home_screen.dart';
@@ -152,7 +153,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             subcat.isEmpty ? null : subcat);
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const HomeScreen()),
+                          MaterialPageRoute(builder: (context) => const ProductsScreen()),
                               (Route<dynamic> route) => false,
                         );
                       },

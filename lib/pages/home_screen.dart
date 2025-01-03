@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:website/widgets/menu_button.dart';
-import 'package:website/widgets/subcategory_row.dart';
 import 'package:website/data/items.dart';
 import 'package:website/items/product.dart';
 import 'package:website/widgets/category_row.dart';
@@ -56,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final category3Items = _categoryItems('3');
 
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         toolbarHeight: 70.0,
         leading: Builder(
@@ -125,13 +125,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      drawer: const AppDrawer(),
 
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 0),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Consumer<CategoryProvider>(
@@ -145,7 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => ProductsScreen(initialCategory: catId.isEmpty ? null : catId),
+                          builder: (_) => ProductsScreen(
+                            initialCategory: catId.isEmpty ? null : catId,
+                          ),
                         ),
                       );
                     },
@@ -153,37 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-
-            const SizedBox(height: 10),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-              child: Consumer<CategoryProvider>(
-                builder: (context, catProvider, child) {
-                  final selCat = catProvider.selectedCategoryId;
-                  if (selCat == null || selCat == '0') {
-                    return const SizedBox();
-                  } else {
-                    return CategoryRowSubcategory(
-                      selectedSubcategory: catProvider.selectedSubcategory,
-                      onSubcategorySelected: (subcat) {
-                        catProvider.updateSubcategory(
-                            subcat == 'Allar vörur' ? null : subcat
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProductsScreen(initialCategory: selCat),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
-
-            const SizedBox(height: 8),
+            const SizedBox(height: 18),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -208,6 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 16),
+
             const SizedBox(height: 20),
             _buildCategoryRow(context, 'Konur', category1Items),
 

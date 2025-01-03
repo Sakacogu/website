@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/data/categories.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:website/pages/product_detail_page.dart';
 import 'package:website/providers/category_provider.dart';
+import 'package:website/pages/products_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -149,6 +151,16 @@ class AppDrawer extends StatelessWidget {
                       ),
                       onPressed: () {
                         categoryProvider.updateSubcategory(subcategory);
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProductsScreen(
+                              initialCategory: categoryProvider.selectedCategoryId,
+                              initialSubcategory: categoryProvider.selectedSubcategory,
+                        ),
+                        ),
+                        );
                       },
                       child: Text(_capitalize(subcategory)),
                     ),

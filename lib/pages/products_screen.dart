@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -12,26 +13,52 @@ import 'package:website/widgets/product_card.dart';
 
 class ProductsScreen extends StatefulWidget {
   final String? initialCategory;
+  final String? initialSubcategory;
 
-  const ProductsScreen({super.key, this.initialCategory});
+  const ProductsScreen({super.key, this.initialCategory, this.initialSubcategory});
 
   @override
   State<ProductsScreen> createState() => _ProductsScreenState();
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  Timer? _debounce;
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String value) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      Provider.of<CategoryProvider>(context, listen: false)
+          .updateSearchQuery(value);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     if (widget.initialCategory != null) {
       final catProvider = Provider.of<CategoryProvider>(context, listen: false);
       catProvider.updateCategory(widget.initialCategory);
-      catProvider.updateSubcategory(null);
+      catProvider.updateSubcategory(widget.initialSubcategory);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double horizontalPaddingLeft = 20.0;
+    double horizontalPaddingRight = screenWidth * 0.70;
+    double verticalPaddingTop = 5.0;
+    double verticalPaddingBottom = 0.0;
+
     final catProvider = Provider.of<CategoryProvider>(context);
     final selectedCategoryId = catProvider.selectedCategoryId;
     final selectedSubcategory = catProvider.selectedSubcategory;
@@ -74,6 +101,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 70.0,
         leading: Builder(
           builder: (ctx) => IconButton(
             icon: const Icon(Icons.menu),
@@ -82,8 +110,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
             },
           ),
         ),
-        title: Center(
-          child: TextButton(
+        title: Stack(
+            children: [
+              Center(
+        child: TextButton(
             onPressed: () {
               catProvider.updateCategory(null);
               catProvider.updateSubcategory(null);
@@ -99,12 +129,50 @@ class _ProductsScreenState extends State<ProductsScreen> {
             ),
           ),
         ),
+        Positioned(
+          left: horizontalPaddingLeft,
+          right: horizontalPaddingRight,
+          top: verticalPaddingTop,
+          bottom: verticalPaddingBottom,
+          child: SizedBox(
+            height: 40,
+            child: TextField(
+              controller: _searchController,
+              onChanged: _onSearchChanged,
+              decoration: InputDecoration(
+                hintText: 'Hverju ertu að leita að?',
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: _searchController.text.isNotEmpty
+                    ? IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    _searchController.clear();
+                    Provider.of<CategoryProvider>(context, listen: false)
+                        .updateSearchQuery('');
+                    setState(() {});
+                  },
+                )
+                    : null,
+                contentPadding:
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+          ),
+        ),
+    ],
+      ),
       ),
       drawer: const AppDrawer(),
 
       body: Column(
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: 0),
           CategoryRow(
             selectedCategoryId: selectedCategoryId ?? '',
             onCategorySelected: (catId) {
