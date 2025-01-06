@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:website/items/product.dart';
 import 'package:website/pages/products_screen.dart';
@@ -23,28 +22,30 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
   final TextEditingController _searchController = TextEditingController();
   Timer? _debounce;
+  String? _selectedSize;
+
+  void _onSearchChanged(String value) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      final categoryProvider =
+      Provider.of<CategoryProvider>(context, listen: false);
+      categoryProvider.updateSearchQuery(value);
+
+      if (value.isNotEmpty) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+              (Route<dynamic> route) => false,
+        );
+      }
+    });
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
     _debounce?.cancel();
     super.dispose();
-  }
-
-  void _onSearchChanged(String value) {
-    if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      final categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
-      categoryProvider.updateSearchQuery(value);
-
-      if (value.isNotEmpty) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-              (Route<dynamic> route) => false,
-        );
-      }
-    });
   }
 
   @override
@@ -55,13 +56,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       appBar: MyAppBar(
         showSearch: true,
         searchController: _searchController,
-        onSearchChanged: (value) {
-
-        },
+        onSearchChanged: _onSearchChanged,
       ),
       drawer: const AppDrawer(),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Consumer<CategoryProvider>(
             builder: (context, categoryProvider, child) {
@@ -79,7 +77,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     },
                   ),
                   const SizedBox(height: 10),
-
                   if (selectedCategoryId != null || selectedCategoryId == '0') ...[
                     CategoryRowSubcategory(
                       selectedSubcategory: selectedSubcategory,
@@ -88,7 +85,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             subcat.isEmpty ? null : subcat);
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const ProductsScreen()),
+                          MaterialPageRoute(builder: (_) => const ProductsScreen()),
                               (Route<dynamic> route) => false,
                         );
                       },
@@ -100,100 +97,142 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             },
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Image.network(
-                      product.imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(
-                            child: Icon(
-                                Icons.error,
-                                size: 50
-                            ),
-                        );
-                      },
-                    ),
+            child: SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  constraints: const BoxConstraints(
+                    minWidth: 500,
                   ),
-                  const SizedBox(width: 24),
-                  Expanded(
-                    flex: 1,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.name,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            '${product.price} kr',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.green,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Litur: ${product.color}',
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            product.description,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
+                  margin: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white70,
+                    border: Border.all(color: Colors.black12),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 550,
+                        height: 750,
+                        child: Image.network(
+                          product.imageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(Icons.error, size: 50),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('${product.name} bætt í körfu!'),
-                                    ),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey,
-                                  foregroundColor: Colors.white,
+                              Text(
+                                product.name,
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                child: const Text('Bæta í körfu'),
+                                textAlign: TextAlign.center,
                               ),
-                              const SizedBox(width: 16),
-                              OutlinedButton(
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('${product.name} vistað!'),
-                                    ),
-                                  );
-                                  setState(() {
-                                    product.saveCount ++;
-                                  });
-                                },
-                                style: OutlinedButton.styleFrom(
-                                  foregroundColor: Colors.red,
-                                  side: const BorderSide(color: Colors.white),
+                              const SizedBox(height: 10),
+                              Text(
+                                product.description,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                'Litur: ${product.color}',
+                                style: const TextStyle(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                '${product.price} kr',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
                                 ),
-                                child: const Text('Vista'),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    'Size:',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  DropdownButton<String>(
+                                    value: _selectedSize,
+                                    hint: const Text('Select Size'),
+                                    items: <String>['XS', 'S', 'M', 'L', 'XL']
+                                        .map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        _selectedSize = newValue;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: _selectedSize == null
+                                        ? null
+                                        : () {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                              'bætt í körfu!'),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.grey,
+                                      foregroundColor: Colors.white,
+                                    ),
+                                    child: const Text('Bæta í körfu'),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  IconButton(
+                                    icon: const Icon(Icons.favorite_border),
+                                    color: Colors.red,
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                          content: const Text(
+                                          'Vistað!'
+                                          ),
+                                          ),
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
