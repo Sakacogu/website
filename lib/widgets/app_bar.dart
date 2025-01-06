@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:website/pages/home_screen.dart';
+import 'package:website/pages/cart_page.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showSearch;
@@ -102,7 +103,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(width: 8),
         IconButton(
           icon: const Icon(Icons.shopping_cart_outlined),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CartPage()),
+            );
+          },
         ),
         const SizedBox(width: 8),
         IconButton(
