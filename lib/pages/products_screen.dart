@@ -17,7 +17,11 @@ class ProductsScreen extends StatefulWidget {
   final String? initialCategory;
   final String? initialSubcategory;
 
-  const ProductsScreen({super.key, this.initialCategory, this.initialSubcategory});
+  const ProductsScreen({
+    super.key,
+    this.initialCategory,
+    this.initialSubcategory
+  });
 
   @override
   State<ProductsScreen> createState() => _ProductsScreenState();
@@ -87,7 +91,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
     return Scaffold(
         appBar: MyAppBar(
-          showSearch: true,
           searchController: _searchController,
           onSearchChanged: (value) {
 

@@ -35,7 +35,11 @@ class ProductCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 width: double.infinity,
                 errorBuilder: (context, error, stackTrace) {
-                  return const Center(child: Icon(Icons.error));
+                  return const Center(
+                      child: Icon(
+                          Icons.error
+                      ),
+                  );
                 },
               ),
             ),

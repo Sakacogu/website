@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: MyAppBar(
-        showSearch: true,
         searchController: _searchController,
         onSearchChanged: (value) {
 

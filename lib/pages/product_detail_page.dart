@@ -9,6 +9,9 @@ import 'package:website/pages/home_screen.dart';
 import 'package:website/widgets/subcategory_row.dart';
 import 'package:website/widgets/category_row.dart';
 import 'package:website/widgets/app_bar.dart';
+import 'package:website/pages/cart_page.dart';
+import 'package:website/providers/cart_provider.dart';
+import 'package:website/items/cart_item.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
@@ -51,10 +54,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     final product = widget.product;
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
 
     return Scaffold(
       appBar: MyAppBar(
-        showSearch: true,
         searchController: _searchController,
         onSearchChanged: _onSearchChanged,
       ),
@@ -197,8 +200,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                     onPressed: _selectedSize == null
                                         ? null
                                         : () {
+                                      cartProvider.addItem(
+                                        CartItem(
+                                          product: product,
+                                          size: _selectedSize!,
+                                        ),
+                                      );
+
                                       ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                           content: Text(
                                               'bætt í körfu!'),
                                         ),
@@ -216,8 +226,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                     color: Colors.red,
                                     onPressed: () {
                                       ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(
-                                          content: const Text(
+                                          const SnackBar(
+                                          content: Text(
                                           'Vistað!'
                                           ),
                                           ),
