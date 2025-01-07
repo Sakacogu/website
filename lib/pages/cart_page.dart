@@ -20,7 +20,7 @@ class CartPage extends StatelessWidget {
       body: cart.items.isEmpty
           ? const Center(
         child: Text(
-          'Karfan þín er tóm.',
+          'Ekkert í körfu.',
           style: TextStyle(fontSize: 18),
         ),
       )

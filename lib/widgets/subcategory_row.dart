@@ -20,9 +20,9 @@ class SubcategoryButton extends StatelessWidget {
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor:
-            isSelected ? Colors.grey : Colors.white,
+            isSelected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
             foregroundColor:
-            isSelected ? Colors.white : Colors.black,
+            isSelected ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onPrimary,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),

@@ -109,7 +109,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   margin: const EdgeInsets.all(16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.white70,
+                    color: Theme.of(context).colorScheme.surface,
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -158,10 +158,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                '${product.price} kr',
+                                'Verð: ${product.price}kr',
                                 style: const TextStyle(
                                   fontSize: 20,
-                                  color: Colors.green,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -170,13 +169,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   const Text(
-                                    'Size:',
+                                    'Stærð:',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                   const SizedBox(width: 10),
                                   DropdownButton<String>(
                                     value: _selectedSize,
-                                    hint: const Text('Select Size'),
+                                    hint: const Text('Veldu stærð'),
                                     items: <String>['XS', 'S', 'M', 'L', 'XL']
                                         .map((String value) {
                                       return DropdownMenuItem<String>(
@@ -197,6 +196,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        iconColor:Theme.of(context).colorScheme.onPrimary
+                                    ),
                                     onPressed: _selectedSize == null
                                         ? null
                                         : () {
@@ -214,10 +216,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         ),
                                       );
                                     },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.grey,
-                                      foregroundColor: Colors.white,
-                                    ),
                                     child: const Text('Bæta í körfu'),
                                   ),
                                   const SizedBox(width: 16),

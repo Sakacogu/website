@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:website/pages/home_screen.dart';
 import 'package:website/pages/cart_page.dart';
+import 'package:website/providers/cart_provider.dart';
+import 'package:website/providers/theme_provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showSearch;
@@ -20,9 +23,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return AppBar(
       centerTitle: true,
       toolbarHeight: toolbarHeight,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
       leadingWidth: showSearch ? 550 : 120,
       leading: Row(
         mainAxisSize: MainAxisSize.min,
@@ -44,10 +51,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: TextField(
                 controller: searchController,
                 onChanged: onSearchChanged,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onInverseSurface,
+                ),
                 decoration: InputDecoration(
-                  hintText: 'Hverju ertu að leita að?',
+                  hintText: 'Leita að vöru',
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).colorScheme.inverseSurface,
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: (searchController != null &&
                       searchController!.text.isNotEmpty)
@@ -91,28 +101,75 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
+
         TextButton(
           onPressed: () {},
-          child: const Text('Log in', style: TextStyle(color: Colors.white)),
+          child: Text('Log in',
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary
+              ),
+          ),
         ),
         const SizedBox(width: 8),
+
         IconButton(
-          icon: const Icon(Icons.dark_mode),
-          onPressed: () {},
-        ),
-        const SizedBox(width: 8),
-        IconButton(
-          icon: const Icon(Icons.shopping_cart_outlined),
+          icon: Icon(
+            themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CartPage()),
-            );
+            themeProvider.toggleTheme();
           },
+          tooltip: 'Toggle Dark Mode',
         ),
         const SizedBox(width: 8),
+
+        Consumer<CartProvider>(
+          builder: (_, cart, __) => Stack(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.shopping_cart_outlined),
+                color: Theme.of(context).colorScheme.onPrimary,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CartPage()),
+                  );
+                },
+                tooltip: 'Skoða körfu',
+              ),
+              if (cart.items.isNotEmpty)
+                Positioned(
+                  right: -1,
+                  top: -1,
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 16,
+                      minHeight: 16,
+                    ),
+                    child: Text(
+                      '${cart.items.length}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 8),
+
         IconButton(
           icon: const Icon(Icons.favorite_border),
+          color: Theme.of(context).colorScheme.onPrimary,
           onPressed: () {},
         ),
         const SizedBox(width: 40),

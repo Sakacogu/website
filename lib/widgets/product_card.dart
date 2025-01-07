@@ -52,7 +52,7 @@ class ProductCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text('${product.price} kr'),
+              child: Text('${product.price}kr'),
             ),
             const SizedBox(height: 8),
           ],
