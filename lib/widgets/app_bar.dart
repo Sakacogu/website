@@ -66,7 +66,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const CartPage()),
+                  MaterialPageRoute(builder: (_) => CartPage()),
                 );
               },
             ),

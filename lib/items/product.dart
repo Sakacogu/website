@@ -1,7 +1,6 @@
 // Skilgreining á Product-líkani.
 // Nýtist samhliða items.dart
 
-
 class Product {
   final String categoryId;  // Stóru flokkarnir "1" = Konur, "2" = Karlar, "3" = Börn
   final String id;          // Auðkenni fyrir hverja staka vöru (F1, F2, etc.)

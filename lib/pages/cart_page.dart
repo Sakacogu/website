@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:website/providers/cart_provider.dart';
 import 'package:website/items/cart_item.dart';
@@ -6,13 +7,17 @@ import 'package:website/widgets/app_bar.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/pages/home_screen.dart';
 
-// Þetta er síðan sem sýnir körfuna (CartPage).
+// Þetta er síðan sem sýnir innihald körfunnar (CartPage).
 // Hér getur notandi séð hvað er í körfunni, breytt magni eða eytt vöru úr körfunni.
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+  CartPage({super.key});
+
+  // Stillir útlitið á verðinu
+  final NumberFormat priceFormatter = NumberFormat("#,###");
 
   @override
+
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
     final totalPrice = cart.items.fold(
@@ -138,7 +143,7 @@ class CartPage extends StatelessWidget {
                               ),
                               // Sýnir samtals verð allra vara í körfu
                               Text(
-                                '${(item.product.price * item.quantity).toStringAsFixed(0)} kr',
+                                '${priceFormatter.format(item.product.price * item.quantity)}kr',
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSecondary,
                                   fontSize: 16,
@@ -169,7 +174,7 @@ class CartPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$totalPrice kr',
+                  '${priceFormatter.format(totalPrice)}kr',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 18,

@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         builder: (context, themeProvider, child) {
           return MaterialApp(
             title: 'Fatavörubúð',
-            // Skoðar themeProvider.themeMode til að sjá hvort við séum í ljósa eða dimma-þema
+            // Skoðar themeProvider.themeMode til að sjá hvort appið sé í ljósa eða dimma-þemanu
             themeMode: themeProvider.themeMode,
             theme: lightTheme,
             darkTheme: darkTheme,

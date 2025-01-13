@@ -1,6 +1,6 @@
 import 'package:website/items/product.dart';
 
-// Sækir vinsælar vörur eftir saveCount og skilar þeim efst (max 15).
+// Sækir vinsælar vörur eftir saveCount og skilar þeim í efstu línu á forsíðu (max 15).
 List<Product> getPopularProducts() {
   final List<Product> sorted = List.from(products);
   sorted.sort((a, b) => b.saveCount.compareTo(a.saveCount));

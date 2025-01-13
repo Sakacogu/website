@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:website/items/product.dart';
 import 'package:website/pages/products_screen.dart';
@@ -14,7 +15,6 @@ import 'package:website/providers/favorites_provider.dart';
 // Sýnir smáatriðin um hverja vöru (mynd, lýsing, verð, stærð...)
 class ProductDetailPage extends StatefulWidget {
   final Product product;
-
   const ProductDetailPage({super.key, required this.product});
 
   @override
@@ -23,6 +23,10 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
 
+  // Stillir útlitið á verðinu
+  final NumberFormat priceFormatter = NumberFormat("#,###");
+
+  // Tekur við stærðarvalinu í dropdown menuinu
   String? _selectedSize;
 
   @override
@@ -180,7 +184,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
         const SizedBox(height: 10),
         Text(
-          'Verð: ${product.price} kr',
+          'Verð: ${priceFormatter.format(product.price)}kr',
           style: const TextStyle(fontSize: 20),
           textAlign: TextAlign.center,
         ),

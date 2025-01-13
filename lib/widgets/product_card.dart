@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:website/items/product.dart';
 import 'package:website/pages/product_detail_page.dart';
 import 'package:provider/provider.dart';
@@ -8,9 +9,12 @@ import 'package:website/providers/favorites_provider.dart';
 // Þegar smellt er á cardið, förum við í ProductDetailPage til að skoða vöru nánar.
 
 class ProductCard extends StatelessWidget {
-  final Product product;
 
-  const ProductCard({super.key, required this.product});
+  final Product product;
+  ProductCard({super.key, required this.product});
+
+  // Stillir útlitið á verðinu
+  final NumberFormat priceFormatter = NumberFormat("#,###");
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +104,7 @@ class ProductCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                '${product.price}kr',
+                '${priceFormatter.format(product.price)}kr',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                 ),

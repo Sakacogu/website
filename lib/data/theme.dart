@@ -35,7 +35,6 @@ const kDarkColorScheme = ColorScheme(
 );
 
 // lightTheme notar kColorScheme, og darkTheme notar kDarkColorScheme
-
 final ThemeData lightTheme = ThemeData().copyWith(
   colorScheme: kColorScheme,
   scaffoldBackgroundColor: kColorScheme.surface,
