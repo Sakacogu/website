@@ -44,15 +44,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
 
-        TextButton(
-          onPressed: () {},
-          child: Text('Log in',
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary
-              ),
-          ),
-        ),
-
+      // actions er svæðið hægra megin (hnappur til að skipta þema, karfan, hjartað).
       actions: [
         // Theme toggle (ljóst vs. dimmt þema)
         IconButton(
