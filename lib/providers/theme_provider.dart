@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Sér um hvort notandi er í dökku eða ljósu þema.
+// Vistar stillingar í SharedPreferences svo það haldist þrátt fyrir refresh
+
 class ThemeProvider extends ChangeNotifier {
   ThemeMode _themeMode;
-
 
   ThemeProvider({ThemeMode themeMode = ThemeMode.system}) : _themeMode = themeMode {
     _loadTheme();
@@ -12,7 +14,6 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode get themeMode => _themeMode;
 
   bool get isDarkMode => _themeMode == ThemeMode.dark;
-
   bool get isLightMode => _themeMode == ThemeMode.light;
 
   void toggleTheme() {

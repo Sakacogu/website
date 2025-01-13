@@ -4,6 +4,10 @@ import 'package:website/providers/cart_provider.dart';
 import 'package:website/items/cart_item.dart';
 import 'package:website/widgets/app_bar.dart';
 import 'package:website/widgets/menu_button.dart';
+import 'package:website/pages/home_screen.dart';
+
+// Þetta er síðan sem sýnir körfuna (CartPage).
+// Hér getur notandi séð hvað er í körfunni, breytt magni eða eytt vöru úr körfunni.
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -12,11 +16,14 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
     final totalPrice = cart.items.fold(
-        0.0, (sum, item) => sum + (item.product.price * item.quantity));
+      0.0,
+          (sum, item) => sum + (item.product.price * item.quantity),
+    );
 
     return Scaffold(
-      appBar: const MyAppBar(),
-      drawer: const AppDrawer(),
+      appBar: const MyAppBar(),   // Notar uppsettan app bar (titil línu)
+      drawer: const AppDrawer(), // Notar uppsetta hamborgara menu takkann (menu_button)
+
       body: cart.items.isEmpty
           ? const Center(
         child: Text(
@@ -28,14 +35,14 @@ class CartPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // ListView af körfulínum
             Expanded(
               child: ListView.builder(
                 itemCount: cart.items.length,
                 itemBuilder: (context, index) {
                   final CartItem item = cart.items[index];
                   return Card(
-                    margin:
-                    const EdgeInsets.symmetric(vertical: 8.0),
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -43,34 +50,32 @@ class CartPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Mynd af vörunni
                           ClipRRect(
-                            borderRadius:
-                            BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
                               item.product.imageUrl,
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover,
-                              errorBuilder:
-                                  (context, error, stackTrace) {
-                                return const Icon(Icons.error,
-                                    size: 50);
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.error, size: 50);
                               },
                             ),
                           ),
                           const SizedBox(width: 16),
-                          // Product Details
+
+                          // Nafn, stærð og magn
                           Expanded(
                             child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   item.product.name,
-                                  style: const TextStyle(
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.onSecondary,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -78,17 +83,20 @@ class CartPage extends StatelessWidget {
                                 const SizedBox(height: 8),
                                 Text(
                                   'Stærð: ${item.size}',
-                                  style: const TextStyle(
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.onSecondary,
                                     fontSize: 16,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                // Quantity Controls
+
+                                // Hnappar til að auka/minnka magn
                                 Row(
                                   children: [
-                                    const Text(
+                                    Text(
                                       'Fjöldi: ',
                                       style: TextStyle(
+                                        color: Theme.of(context).colorScheme.onSecondary,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -100,7 +108,8 @@ class CartPage extends StatelessWidget {
                                     ),
                                     Text(
                                       '${item.quantity}',
-                                      style: const TextStyle(
+                                      style: TextStyle(
+                                        color: Theme.of(context).colorScheme.onSecondary,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -116,20 +125,22 @@ class CartPage extends StatelessWidget {
                               ],
                             ),
                           ),
+
+                          // Hnappur til að eyða vörum úr körfunni
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.delete,
-                                    color: Colors.red),
+                                icon: const Icon(Icons.delete, color: Colors.red),
                                 onPressed: () {
                                   cart.removeItem(item);
                                 },
                               ),
+                              // Sýnir samtals verð allra vara í körfu
                               Text(
                                 '${(item.product.price * item.quantity).toStringAsFixed(0)} kr',
-                                style: const TextStyle(
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.onSecondary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -144,19 +155,23 @@ class CartPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+
+            // Heildarverð og takki til að ljúka kaupum
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Heildarverð:',
                   style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   '$totalPrice kr',
-                  style: const TextStyle(
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -168,21 +183,23 @@ class CartPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Vörur keyptar!')
-                    ),
-                  );
+                  // Tæma körfu og fara aftur á upphafssíðu, snackbar sem staðfestir að vörur hafa verið keyptar
                   cart.clearCart();
-                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                        (Route<dynamic> route) => false,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Vörur keyptar!')),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0
-                  ),
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
-                  textStyle: const TextStyle(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                  textStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

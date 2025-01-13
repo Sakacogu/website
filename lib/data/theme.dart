@@ -1,56 +1,40 @@
 import 'package:flutter/material.dart';
 
+// Skilgreining á litaskema (ColorScheme) fyrir ljóst þema og dimmt þema.
+
 const kColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color.fromARGB(255, 69, 69, 69),
   onPrimary: Colors.white,
-  primaryContainer: Color.fromARGB(255, 30, 40, 105),
-  onPrimaryContainer: Colors.white,
-  secondary: Colors.white,
+  secondary: Color.fromARGB(255, 235, 235, 235),
   onSecondary: Color.fromARGB(255, 69, 69, 69),
-  secondaryContainer: Colors.white60,
-  onSecondaryContainer: Color.fromARGB(255, 69, 69, 69),
-  tertiary: Color.fromARGB(255, 120, 69, 69),
-  onTertiary: Colors.grey,
-  tertiaryContainer: Color.fromARGB(205, 120, 69, 69),
-  onTertiaryContainer: Colors.white,
   error: Colors.red,
   onError: Colors.white,
-  errorContainer: Color.fromARGB(255, 255, 20, 50),
-  onErrorContainer: Colors.white,
-  surface: Colors.white,
+  surface: Colors.white60,
   onSurface: Color.fromARGB(255, 15, 15, 15),
-  outline: Colors.white,
-  onInverseSurface: Colors.grey,
-  inverseSurface: Colors.white,
-  inversePrimary: Colors.white,
+  primaryContainer: Color.fromARGB(255, 120, 120, 120),
+  onPrimaryContainer: Colors.white,
+  secondaryContainer: Color.fromARGB(255, 220, 220, 220),
+  onSecondaryContainer: Color.fromARGB(255, 69, 69, 69),
 );
 
 const kDarkColorScheme = ColorScheme(
   brightness: Brightness.dark,
   primary: Color.fromARGB(255, 69, 69, 69),
   onPrimary: Color.fromARGB(255, 230, 230, 230),
-  primaryContainer: Color.fromARGB(255, 30, 40, 105),
-  onPrimaryContainer: Colors.white,
-  secondary: Colors.white,
+  secondary: Color.fromARGB(255, 200, 200, 200),
   onSecondary: Color.fromARGB(255, 69, 69, 69),
-  secondaryContainer: Color.fromARGB(255, 69, 69, 69),
-  onSecondaryContainer: Colors.white,
-  tertiary: Color.fromARGB(255, 120, 69, 69),
-  onTertiary: Colors.black,
-  tertiaryContainer: Color.fromARGB(205, 120, 69, 69),
-  onTertiaryContainer: Colors.white,
   error: Colors.red,
   onError: Colors.white,
-  errorContainer: Color.fromARGB(255, 255, 20, 50),
-  onErrorContainer: Colors.white,
   surface: Color.fromARGB(255, 100, 100, 100),
   onSurface: Color.fromARGB(255, 15, 15, 15),
-  outline: Colors.white,
-  onInverseSurface: Colors.black,
-  inverseSurface: Colors.white,
-  inversePrimary: Colors.white,
+  primaryContainer: Color.fromARGB(255, 90, 90, 90),
+  onPrimaryContainer: Colors.white,
+  secondaryContainer: Color.fromARGB(255, 160, 160, 160),
+  onSecondaryContainer: Color.fromARGB(255, 69, 69, 69),
 );
+
+// lightTheme notar kColorScheme, og darkTheme notar kDarkColorScheme
 
 final ThemeData lightTheme = ThemeData().copyWith(
   colorScheme: kColorScheme,

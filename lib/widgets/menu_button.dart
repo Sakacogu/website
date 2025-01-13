@@ -2,24 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/data/categories.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:website/pages/product_detail_page.dart';
-import 'package:website/providers/category_provider.dart';
-import 'package:website/pages/products_screen.dart';
 import 'package:website/pages/home_screen.dart';
+import 'package:website/pages/products_screen.dart';
+import 'package:website/providers/category_provider.dart';
+
+// Þetta er valmynd sem birtist vinstra megin þegar notandi ýtir á menu-hnappinn.
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({
-    super.key,
-  });
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Sækir categoryProvider til að vita hvaða flokkur/undirflokkur er valinn
     final categoryProvider = Provider.of<CategoryProvider>(context);
     final currentCategoryId = categoryProvider.selectedCategoryId;
     final currentSubcategoryId = categoryProvider.selectedSubcategory;
 
+    // Reiknar hlutföll skjás til að skala boxið rétt.
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    const double baseWidth = 1920;
+    const double baseHeight = 1080;
+    final double widthRatio = screenWidth / baseWidth;
+    final double heightRatio = screenHeight / baseHeight;
+    final double leftMargin = 80 * widthRatio;
+    final double topMargin = 80 * heightRatio;
+    final double rightMargin = 1000 * widthRatio;
+    final double bottomMargin = 250 * heightRatio;
+
     return Container(
-      margin: const EdgeInsets.fromLTRB(80, 80, 1000, 250),
+      margin: EdgeInsets.fromLTRB(leftMargin, topMargin, rightMargin, bottomMargin),
       decoration: BoxDecoration(
         color: Colors.white60,
         borderRadius: BorderRadius.circular(18),
@@ -33,6 +45,7 @@ class AppDrawer extends StatelessWidget {
       ),
       child: Column(
         children: [
+          // Stílaður header efst í valmynd, í anda app bar
           DrawerHeader(
             decoration: const BoxDecoration(
               color: Color.fromARGB(200, 69, 69, 69),
@@ -44,30 +57,33 @@ class AppDrawer extends StatelessWidget {
             child: Center(
               child: TextButton(
                 onPressed: () {
+                  // Fer á upphafssíðu og endurstillir flokk og undirflokk
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => const HomeScreen()),
                           (Route<dynamic> route) => false
                   );
-                  final categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
-                  categoryProvider.updateCategory(null);
-                  categoryProvider.updateSubcategory(null);
+                  final catProv = Provider.of<CategoryProvider>(context, listen: false);
+                  catProv.updateCategory(null);
+                  catProv.updateSubcategory(null);
                 },
-    style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-                minimumSize: const Size(0, 0),
-              ),
-              child: Text(
-                'Fatavörubúð',
-                style: GoogleFonts.besley(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontStyle: FontStyle.italic,
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: const Size(0, 0),
+                ),
+                child: Text(
+                  'Fatavörubúð',
+                  style: GoogleFonts.besley(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
             ),
           ),
-    ),
+
+          // Flokkar birtast í láréttri röð
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SingleChildScrollView(
@@ -104,6 +120,7 @@ class AppDrawer extends StatelessWidget {
 
           const SizedBox(height: 16),
 
+          // Undirflokkar birtast í lóðrétti röð
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 56.0),
@@ -150,11 +167,8 @@ class AppDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                        isSelected ? Colors.grey
-                        : Colors.white,
-                        foregroundColor:
-                        isSelected ? Colors.white : Colors.black,
+                        backgroundColor: isSelected ? Colors.grey : Colors.white,
+                        foregroundColor: isSelected ? Colors.white : Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -172,15 +186,15 @@ class AppDrawer extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (_) => ProductsScreen(
-                              initialCategory: currentCat == null ? null : currentCat,
-                        ),
-                        ),
+                              initialCategory: currentCat,
+                            ),
+                          ),
                         );
                       },
                       child: Text(_capitalize(subcategory)),
                     ),
                   );
-                })
+                }),
               ],
             ),
           ),
@@ -188,5 +202,7 @@ class AppDrawer extends StatelessWidget {
       ),
     );
   }
-  String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+
+  String _capitalize(String s) =>
+      s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 }

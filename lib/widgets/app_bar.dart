@@ -1,87 +1,30 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:website/pages/home_screen.dart';
 import 'package:website/pages/cart_page.dart';
+import 'package:website/pages/favorites_page.dart';
 import 'package:website/providers/cart_provider.dart';
 import 'package:website/providers/theme_provider.dart';
+import 'package:website/pages/home_screen.dart';
 
+// Sýnir heiti verslunnarinnar "Fatavörubúð" í miðjunni og hnappa hægra/vinstamegin við nafnið
+// vinstra megin (Menu til að opna Drawer) og hægra megin (karfa, uppáhald, theme toggle).
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final bool showSearch;
-  final double toolbarHeight;
-  final TextEditingController? searchController;
-  final ValueChanged<String>? onSearchChanged;
+  const MyAppBar({super.key});
 
-  const MyAppBar({
-    super.key,
-    this.showSearch = true,
-    this.toolbarHeight = 70.0,
-    this.searchController,
-    this.onSearchChanged,
-  });
+  // preferredSize segir Flutter hversu hár AppBar á að vera.
+  // kToolbarHeight er venjulega 56 px
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
+    // Hér sækjum við Provider fyrir þema og körfu
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return AppBar(
       centerTitle: true,
-      toolbarHeight: toolbarHeight,
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      leadingWidth: showSearch ? 550 : 120,
-      leading: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(width: 30),
-          Builder(
-            builder: (ctx) => IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(ctx).openDrawer();
-              },
-            ),
-          ),
-          if (showSearch) const SizedBox(width: 50),
-          if (showSearch)
-            SizedBox(
-              width: 310,
-              height: 35,
-              child: TextField(
-                controller: searchController,
-                onChanged: onSearchChanged,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onInverseSurface,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Leita að vöru',
-                  filled: true,
-                  fillColor: Theme.of(context).colorScheme.inverseSurface,
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: (searchController != null &&
-                      searchController!.text.isNotEmpty)
-                      ? IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      searchController!.clear();
-                      onSearchChanged?.call('');
-                    },
-                  )
-                      : null,
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 0.0,
-                    horizontal: 20.0,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-            ),
-        ],
-      ),
       title:
       TextButton(
         onPressed: () {
@@ -100,7 +43,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      actions: [
 
         TextButton(
           onPressed: () {},
@@ -110,73 +52,70 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
           ),
         ),
-        const SizedBox(width: 8),
 
+      actions: [
+        // Theme toggle (ljóst vs. dimmt þema)
         IconButton(
           icon: Icon(
             themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
-          onPressed: () {
-            themeProvider.toggleTheme();
-          },
-          tooltip: 'Toggle Dark Mode',
+          tooltip: 'Skipta um þema',
+          onPressed: () => themeProvider.toggleTheme(),
         ),
-        const SizedBox(width: 8),
 
-        Consumer<CartProvider>(
-          builder: (_, cart, __) => Stack(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.shopping_cart_outlined),
-                color: Theme.of(context).colorScheme.onPrimary,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CartPage()),
-                  );
-                },
-                tooltip: 'Skoða körfu',
-              ),
-              if (cart.items.isNotEmpty)
-                Positioned(
-                  right: -1,
-                  top: -1,
-                  child: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    child: Text(
-                      '${cart.items.length}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+        // Karfan - sýnir fjölda hluta í körfu ef karfan er ekki tóm
+        Stack(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.shopping_cart_outlined),
+              tooltip: 'Karfa',
+              onPressed: () {
+                // Loka snackbar og fara í CartPage
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CartPage()),
+                );
+              },
+            ),
+            // Ef karfan er ekki tóm, birtist rautt merki
+            if (cartProvider.items.isNotEmpty)
+              Positioned(
+                right: 0,
+                top: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                  child: Text(
+                    '${cartProvider.items.length}',
+                    style: const TextStyle(color: Colors.white, fontSize: 10),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
-        const SizedBox(width: 8),
 
+        // Uppáhalds (favorite)
         IconButton(
           icon: const Icon(Icons.favorite_border),
-          color: Theme.of(context).colorScheme.onPrimary,
-          onPressed: () {},
+          tooltip: 'Uppáhalds',
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const FavoritesPage()),
+            );
+          },
         ),
-        const SizedBox(width: 40),
+
+        // smá bil
+        const SizedBox(width: 8),
       ],
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(toolbarHeight);
 }

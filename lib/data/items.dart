@@ -1,5 +1,6 @@
 import 'package:website/items/product.dart';
 
+// Sækir vinsælar vörur eftir saveCount og skilar þeim efst (max 15).
 List<Product> getPopularProducts() {
   final List<Product> sorted = List.from(products);
   sorted.sort((a, b) => b.saveCount.compareTo(a.saveCount));
@@ -8,9 +9,16 @@ List<Product> getPopularProducts() {
   return sorted.sublist(0, count);
 }
 
+
+// Listi af öllum vörum í appinu, skipt niður eftir categoryId
+// (1 => Konur, 2 => Karlar, 3 => Börn).
+// Hver vara er af gerð Product
+
 final List<Product> products = [
+  // Category 1 (Konur)
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F1',
     name: 'Skyrta með slaufu',
     color: 'svartur og hvítur',
     price: 7500,
@@ -20,7 +28,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F2',
     name: 'Síð röndótt skyrta',
     color: 'blár og hvítur',
     price: 8000,
@@ -30,7 +39,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F3',
     name: 'Blómamynstrað pils',
     color: 'gulur og svartur',
     price: 8500,
@@ -40,7 +50,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F4',
     name: 'Litrík skyrta',
     color: 'teal, bleikur og fjólublár',
     price: 9000,
@@ -50,7 +61,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F5',
     name: 'Rifflað pils',
     color: 'brúnn',
     price: 9500,
@@ -60,7 +72,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F6',
     name: 'Röndóttur bolur',
     color: 'hvítur, svartur og gulur',
     price: 7000,
@@ -70,7 +83,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F7',
     name: 'Háhælaðir skór yfir ökkla',
     color: 'brúnn',
     price: 20000,
@@ -80,7 +94,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F8',
     name: 'Strigaskór',
     color: 'Bleikt',
     price: 18000,
@@ -90,7 +105,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F9',
     name: 'Bambus veski',
     color: 'Ljós brúnn',
     price: 6000,
@@ -100,7 +116,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F10',
     name: 'Blár flæðandi kjóll',
     color: 'blár',
     price: 12000,
@@ -110,7 +127,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F11',
     name: 'Gallapils með raufum',
     color: 'Blátt',
     price: 8000,
@@ -120,7 +138,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F12',
     name: 'Hvítir háhælaðir skór',
     color: 'Hvítt',
     price: 22000,
@@ -130,7 +149,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F13',
     name: 'Litrík leðurtaska',
     color: 'grænn og rauður',
     price: 11000,
@@ -140,7 +160,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F14',
     name: 'Stutterma- buxur og bolur',
     color: 'hvítur, rauður og svartur',
     price: 8500,
@@ -150,7 +171,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F15',
     name: 'Loðvesti',
     color: 'Dökk blátt',
     price: 18000,
@@ -160,7 +182,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F16',
     name: 'Stutterma samfestingur',
     color: 'grátt',
     price: 16000,
@@ -170,7 +193,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F17',
     name: 'Svartur hlýrabolur',
     color: 'Svartur',
     price: 7000,
@@ -180,7 +204,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F18',
     name: 'Skyrtu-jakki',
     color: 'blár',
     price: 14000,
@@ -190,7 +215,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F19',
     name: 'Fóðraður jakki',
     color: 'brúnn',
     price: 25000,
@@ -200,7 +226,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F20',
     name: 'Stuttermabolur',
     color: 'svartur',
     price: 7500,
@@ -210,7 +237,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F21',
     name: 'Jakkafatasett',
     color: 'grár',
     price: 30000,
@@ -220,7 +248,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F22',
     name: 'Svart peysusett',
     color: 'svartur',
     price: 9000,
@@ -230,7 +259,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F23',
     name: 'Gular gallabuxur',
     color: 'gulur',
     price: 8000,
@@ -240,7 +270,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F24',
     name: 'cargobuxur',
     color: 'svartur',
     price: 8500,
@@ -250,7 +281,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F25',
     name: 'Prjónuð peysa',
     color: 'bleikur',
     price: 7000,
@@ -260,7 +292,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F26',
     name: 'Casual gallabuxur',
     color: 'svartur',
     price: 8000,
@@ -270,7 +303,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F27',
     name: 'Kjóll',
     color: 'gulur',
     price: 11000,
@@ -280,7 +314,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F28',
     name: 'Köflóttur frakki',
     color: 'hvítur/svartur',
     price: 22000,
@@ -290,7 +325,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F29',
     name: 'Kjóll með blómamynstri',
     color: 'bleikur',
     price: 12000,
@@ -300,7 +336,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F30',
     name: 'Mynstruð slæða',
     color: 'gulur/blár',
     price: 6500,
@@ -310,7 +347,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F31',
     name: 'Köflóttur kjóll',
     color: 'svartur/hvítur',
     price: 13000,
@@ -320,8 +358,9 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
-    name: 'Stuttermabolur með kraga',
+    categoryId: '1',
+    id: 'F32',
+    name: 'Stutterma bolur með kraga',
     color: 'gulur',
     price: 7500,
     imageUrl: 'https://images.pexels.com/photos/720606/pexels-photo-720606.jpeg',
@@ -330,7 +369,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F33',
     name: 'Þægileg peysa með kraga',
     color: 'blár/hvítur',
     price: 8000,
@@ -340,7 +380,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '1',
+    categoryId: '1',
+    id: 'F34',
     name: 'Vintage jakki',
     color: 'blár',
     price: 25000,
@@ -348,9 +389,12 @@ final List<Product> products = [
     description: 'Gamaldags en eins og ekkert annað.',
     subcategory: 'yfirhafnir',
     saveCount: 0,
+
+    // Category 2 (Karlar)
   ),
   Product(
-    id: '1',
+    categoryId: '2',
+    id: 'F35',
     name: 'Fínn og hlýr jakki',
     color: 'brúnn',
     price: 20000,
@@ -359,8 +403,10 @@ final List<Product> products = [
     subcategory: 'yfirhafnir',
     saveCount: 0,
   ),
+
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F36',
     name: 'Fínir leðurskór',
     color: 'brúnn',
     price: 18000,
@@ -370,7 +416,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F37',
     name: 'Létt peysa',
     color: 'Svartur',
     price: 6500,
@@ -380,7 +427,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F38',
     name: 'Töff hettupeysa',
     color: 'gulur',
     price: 7000,
@@ -390,7 +438,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F39',
     name: 'Þægilegir strigaskór',
     color: 'appelsínugulur',
     price: 17000,
@@ -400,7 +449,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F40',
     name: 'Slim fit gallabuxur',
     color: 'svartur',
     price: 9000,
@@ -410,7 +460,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F41',
     name: 'Þröngar gallabuxur',
     color: 'blár',
     price: 9500,
@@ -420,7 +471,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F42',
     name: 'Þægileg skyrta',
     color: 'hvítur',
     price: 7000,
@@ -430,7 +482,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F43',
     name: 'Jakkafata jakki',
     color: 'blár',
     price: 25000,
@@ -440,7 +493,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F44',
     name: 'Adidas sport jakki',
     color: 'svartur',
     price: 22000,
@@ -450,7 +504,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F45',
     name: 'Hvít jakkaföt',
     color: 'hvítur',
     price: 28000,
@@ -460,7 +515,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F46',
     name: 'Köflótt skyrta',
     color: 'brúnn',
     price: 7500,
@@ -470,7 +526,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F47',
     name: 'Hringlótt sólgleraugu',
     color: 'svartur',
     price: 6000,
@@ -480,7 +537,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F48',
     name: 'létt hettupeysa',
     color: 'grár',
     price: 6500,
@@ -490,7 +548,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F49',
     name: 'Nike strigaskór',
     color: 'hvítur',
     price: 19000,
@@ -500,7 +559,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F50',
     name: 'Derhúfa',
     color: 'svartur',
     price: 5000,
@@ -510,7 +570,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F51',
     name: 'Sólgleraugu',
     color: 'silfur',
     price: 7000,
@@ -520,7 +581,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F52',
     name: 'Gallabuxur',
     color: 'blár/hvítur',
     price: 8000,
@@ -530,17 +592,19 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F53',
     name: 'Loðfelds jakki',
     color: 'svartur/hvítur',
     price: 23000,
-    imageUrl: 'https://images.pexels.com/photos/29857622/pexels-photo-29857622.jpeg',
+    imageUrl: 'https://images.pexels.com/photos/3317133/pexels-photo-3317133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description: 'Áberandi feldur sem grípur alla athygli.',
     subcategory: 'yfirhafnir',
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F54',
     name: 'Loðin hettupeysa',
     color: 'hvítur',
     price: 12000,
@@ -550,7 +614,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F55',
     name: 'Sólgleraugu',
     color: 'hvítur',
     price: 7500,
@@ -560,7 +625,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F56',
     name: 'Leðurjakki',
     color: 'brúnn',
     price: 25000,
@@ -570,7 +636,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F57',
     name: 'Dúnúlpur',
     color: 'grænn, grár, hvítur',
     price: 22000,
@@ -580,7 +647,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F58',
     name: 'Galla jakki',
     color: 'blár',
     price: 9000,
@@ -590,7 +658,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F59',
     name: 'Kuldaskór',
     color: 'brúnn',
     price: 18000,
@@ -600,7 +669,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F60',
     name: 'Cargo buxur',
     color: 'grænn/svartur',
     price: 8500,
@@ -610,7 +680,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F61',
     name: 'Frakki',
     color: 'grár',
     price: 24000,
@@ -620,7 +691,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F62',
     name: 'trefill',
     color: 'grár',
     price: 7000,
@@ -630,7 +702,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F63',
     name: 'Hettupeysa',
     color: 'grænn',
     price: 8000,
@@ -640,7 +713,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F64',
     name: 'frakki',
     color: 'brúnn',
     price: 23000,
@@ -650,17 +724,19 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F65',
     name: 'Lambhúshetta',
     color: 'marglit',
     price: 9000,
     imageUrl: 'https://images.pexels.com/photos/10664875/pexels-photo-10664875.jpeg',
     description: 'Prjónuð skíðahúfa.',
-    subcategory: 'yfirhafnir',
+    subcategory: 'skór og fylgihlutir',
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F66',
     name: 'Jólapeysa',
     color: 'blár',
     price: 7500,
@@ -670,17 +746,21 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '2',
+    categoryId: '2',
+    id: 'F67',
     name: 'Leðurvesti',
     color: 'svartur',
     price: 20000,
     imageUrl: 'https://images.pexels.com/photos/7955547/pexels-photo-7955547.jpeg',
     description: 'Töff útlit.',
-    subcategory: 'skór og fylgihlutir',
+    subcategory: 'yfirhafnir',
     saveCount: 0,
   ),
+
+  // Category 3 (Börn)
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F68',
     name: 'Fínni platform skór',
     color: 'svartur',
     price: 19000,
@@ -690,7 +770,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F69',
     name: 'Eyrnaskjól',
     color: 'bleikur',
     price: 5000,
@@ -700,7 +781,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F70',
     name: 'Krúttlegur gallakjóll',
     color: 'blár',
     price: 13000,
@@ -710,7 +792,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F71',
     name: 'Hlý kápa',
     color: 'grænn',
     price: 17000,
@@ -720,7 +803,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F72',
     name: 'Þægilegir gallabuxur',
     color: 'blár',
     price: 9000,
@@ -730,7 +814,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F73',
     name: 'Gallabuxur',
     color: 'blár',
     price: 8000,
@@ -740,17 +825,19 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F74',
     name: 'Fín stígvel',
     color: 'svartur',
     price: 16000,
     imageUrl: 'https://images.pexels.com/photos/29857622/pexels-photo-29857622.jpeg',
     description: 'Falleg og hlý stígvel.',
-    subcategory: 'yfirhafnir',
+    subcategory: 'skór og fylgihlutir',
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F75',
     name: 'Stuttermabolur',
     color: 'hvítur',
     price: 7000,
@@ -760,7 +847,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F76',
     name: 'Langermakjóll með mittisbandi',
     color: 'blár',
     price: 8000,
@@ -770,7 +858,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F77',
     name: 'Langerma kjóll með mynstri',
     color: 'hvítur',
     price: 7500,
@@ -780,7 +869,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F78',
     name: 'Langermabolur með blómi',
     color: 'hvítur',
     price: 7000,
@@ -790,7 +880,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F79',
     name: 'Heilgalli',
     color: 'svartur',
     price: 9000,
@@ -800,7 +891,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F80',
     name: 'Kjóll',
     color: 'bleikur',
     price: 12000,
@@ -810,7 +902,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F81',
     name: 'Heilgalli',
     color: 'grænn',
     price: 8500,
@@ -820,7 +913,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F82',
     name: 'Gallajakki',
     color: 'hvítur',
     price: 15000,
@@ -830,7 +924,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F83',
     name: 'Gallabuxur',
     color: 'blár',
     price: 8000,
@@ -840,7 +935,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F84',
     name: 'Kjóll',
     color: 'svartur/hvítur',
     price: 14000,
@@ -850,7 +946,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F85',
     name: 'strigaskór',
     color: 'Hvítur, bleikur, grænn',
     price: 17000,
@@ -860,7 +957,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F86',
     name: 'Peysa',
     color: 'Hvítur',
     price: 7500,
@@ -870,7 +968,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F87',
     name: 'Peysa með mynstri',
     color: 'grár',
     price: 8000,
@@ -880,7 +979,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F88',
     name: 'Krúttleg skyrta',
     color: 'grár',
     price: 8500,
@@ -890,7 +990,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F89',
     name: 'Stígvel',
     color: 'gulur',
     price: 9000,
@@ -900,7 +1001,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F90',
     name: 'Stutterma skyrta',
     color: 'blár',
     price: 8000,
@@ -910,7 +1012,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F91',
     name: 'Gallasmekkbuxur',
     color: 'blár',
     price: 8000,
@@ -920,7 +1023,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F92',
     name: 'Stuttermaskyrta',
     color: 'blár',
     price: 7000,
@@ -930,7 +1034,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F93',
     name: 'Stuttermabolur',
     color: 'hvítur',
     price: 7000,
@@ -940,7 +1045,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F94',
     name: 'Slaufa',
     color: 'rauð',
     price: 6000,
@@ -950,7 +1056,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F95',
     name: 'Skyrta',
     color: 'blár',
     price: 7500,
@@ -960,7 +1067,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F96',
     name: 'Skyrta',
     color: 'blár',
     price: 7500,
@@ -970,7 +1078,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F97',
     name: 'Rifnar allabuxur',
     color: 'Hvítur',
     price: 8500,
@@ -980,7 +1089,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F98',
     name: 'Köflótt skyrta',
     color: 'brúnn',
     price: 8000,
@@ -990,7 +1100,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F99',
     name: 'Leður skór',
     color: 'brúnn',
     price: 20000,
@@ -1000,7 +1111,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F100',
     name: 'Skyrta',
     color: 'hvítur',
     price: 8000,
@@ -1010,7 +1122,8 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    id: '3',
+    categoryId: '3',
+    id: 'F101',
     name: 'Bolur með mynstri',
     color: 'brúnn',
     price: 7000,
