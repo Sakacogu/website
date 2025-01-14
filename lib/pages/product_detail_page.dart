@@ -153,7 +153,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         const SizedBox(width: 16),
         Expanded(
           flex: 3,
+          child: Padding(
+          padding: const EdgeInsets.only(top: 200),
           child: _buildProductDetails(context, product, cartProvider),
+          ),
         ),
       ],
     );

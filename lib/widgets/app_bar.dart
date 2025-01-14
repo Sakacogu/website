@@ -46,6 +46,18 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       // actions er svæðið hægra megin (hnappur til að skipta þema, karfan, hjartað).
       actions: [
+
+        // Log in takki sem á eftir að tengja
+        TextButton(
+          onPressed: () {},
+          child: Text('Log in',
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+
         // Theme toggle (ljóst vs. dimmt þema)
         IconButton(
           icon: Icon(
