@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:website/data/items.dart';
 import 'package:website/items/product.dart';
@@ -35,14 +36,15 @@ class CategoryProvider with ChangeNotifier {
       return products.where((p) => p.categoryId == catId).toList();
     }
 
-    // Sækir vinsælar vörur eftir saveCount og skilar þeim í efstu línu á forsíðu (max 15).
-    List<Product> getPopularProducts() {
-      final List<Product> sorted = List.from(products);
-      sorted.sort((a, b) => b.saveCount.compareTo(a.saveCount));
+  // Var áður = sækir vinsælar vörur eftir saveCount og skilar þeim í efstu línu á forsíðu (max 15).
+  // En á meðan þetta er í vinnslu þá er þetta bara random vörur upp á útlit
+  List<Product> getPopularProducts() {
+    final List<Product> shuffled = List.from(products);
+    shuffled.shuffle(Random(321));
 
-      final int count = sorted.length < 15 ? sorted.length : 15;
-      return sorted.sublist(0, count);
-    }
+    final int count = shuffled.length < 15 ? shuffled.length : 15;
+    return shuffled.sublist(0, count);
+  }
 
     List<Product> searchProductsByName(String query) {
       return products
