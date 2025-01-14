@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Heldur utan um uppáhalds vörur (favoriteProductIds).
 // Breytir listanum ef notandi ýtir á hjartatakkann
 // Vistum í SharedPreferences svo það haldist þrátt fyrir refresh
+// Á eftir að tengja almennilega
 
 class FavoritesProvider extends ChangeNotifier {
   final Set<String> _favoriteProductIds = {};
