@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:website/providers/category_provider.dart';
 import 'package:website/widgets/menu_button.dart';
-import 'package:website/data/items.dart';
 import 'package:website/items/product.dart';
 import 'package:website/widgets/category_row.dart';
 import 'package:website/widgets/product_card.dart';
 import 'package:provider/provider.dart';
-import 'package:website/providers/category_provider.dart';
 import 'package:website/pages/products_screen.dart';
 import 'package:website/widgets/app_bar.dart';
 
 // Þetta er forsíðan
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -22,20 +20,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  // Sækir vörur í viðeigandi flokk
-  List<Product> _categoryItems(String catId) {
-    return products.where((p) => p.categoryId == catId).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
-    // Sækir vinsælar vörur með getPopularProducts() til að birta efst á síðunni
-    final popularItems = getPopularProducts();
 
+    // Sækir viðeigandi flokka
+    final categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
+
+    // Sækir vinsælar vörur með getPopularProducts() til að birta efst á síðunni
+    final popularItems = categoryProvider.getPopularProducts();
     // Vörur sem tilheyra flokkum "Konur", "Karlar", "Börn"
-    final category1Items = _categoryItems('1');
-    final category2Items = _categoryItems('2');
-    final category3Items = _categoryItems('3');
+    final category1Items = categoryProvider.categoryItems('1');
+    final category2Items = categoryProvider.categoryItems('2');
+    final category3Items = categoryProvider.categoryItems('3');
 
     return Scaffold(
       appBar: const MyAppBar(),   // Notar uppsettan app bar (titil línu)

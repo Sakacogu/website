@@ -1,15 +1,5 @@
 import 'package:website/items/product.dart';
 
-// Sækir vinsælar vörur eftir saveCount og skilar þeim í efstu línu á forsíðu (max 15).
-List<Product> getPopularProducts() {
-  final List<Product> sorted = List.from(products);
-  sorted.sort((a, b) => b.saveCount.compareTo(a.saveCount));
-
-  final int count = sorted.length < 15 ? sorted.length : 15;
-  return sorted.sublist(0, count);
-}
-
-
 // Listi af öllum vörum í appinu, skipt niður eftir categoryId
 // (1 => Konur, 2 => Karlar, 3 => Börn).
 // Hver vara er af gerð Product
