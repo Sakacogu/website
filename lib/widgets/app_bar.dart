@@ -157,6 +157,9 @@ class MyAppBarState extends State<MyAppBar> {
                   builder: (_) => ProductDetailPage(product: product),
                 ),
               );
+              final catProv = Provider.of<CategoryProvider>(context, listen: false);
+              catProv.updateCategory(null);
+              catProv.updateSubcategory(null);
             },
           );
         },
@@ -179,6 +182,9 @@ class MyAppBarState extends State<MyAppBar> {
             MaterialPageRoute(builder: (context) => const HomeScreen()),
                 (route) => false,
           );
+          final catProv = Provider.of<CategoryProvider>(context, listen: false);
+          catProv.updateCategory(null);
+          catProv.updateSubcategory(null);
         },
         child: Text(
           'Fatavörubúð',

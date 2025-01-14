@@ -6,6 +6,7 @@ import 'package:website/items/cart_item.dart';
 import 'package:website/widgets/app_bar.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/pages/home_screen.dart';
+import 'package:website/providers/category_provider.dart';
 
 // Þetta er síðan sem sýnir innihald körfunnar (CartPage).
 // Hér getur notandi séð hvað er í körfunni, breytt magni eða eytt vöru úr körfunni.
@@ -195,8 +196,13 @@ class CartPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
                         (Route<dynamic> route) => false,
                   );
+                  final catProv = Provider.of<CategoryProvider>(context, listen: false);
+                  catProv.updateCategory(null);
+                  catProv.updateSubcategory(null);
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Vörur keyptar!')),
+
                   );
                 },
                 style: ElevatedButton.styleFrom(
