@@ -21,16 +21,16 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
-  _MyAppBarState createState() => _MyAppBarState();
+  MyAppBarState createState() => MyAppBarState();
 }
 
-class _MyAppBarState extends State<MyAppBar> {
+class MyAppBarState extends State<MyAppBar> {
   OverlayEntry? _searchOverlayEntry;
   final LayerLink _layerLink = LayerLink();
   final TextEditingController _searchController = TextEditingController();
 
   void _showSearchOverlay(BuildContext context) {
-    if (_searchOverlayEntry != null) return; // Setur leitarsíuna ofar öllu öðru á skjánum
+    if (_searchOverlayEntry != null) return; // Sýnir leitarsíuna
 
     _searchOverlayEntry = OverlayEntry(
       builder: (context) => GestureDetector(
@@ -39,77 +39,88 @@ class _MyAppBarState extends State<MyAppBar> {
           _removeSearchOverlay();
         },
         child: Material(
-          color: Colors.black54,
-          child: Stack(
-            children: [
-              Positioned(
-                top: kToolbarHeight + 10,
-                left: 20,
-                right: 20,
-                child: CompositedTransformFollower(
-                  link: _layerLink,
-                  showWhenUnlinked: false,
-                  offset: const Offset(0.0, kToolbarHeight + 10),
-                  child: Material(
-                    elevation: 4.0,
+          color: Colors.black54, // Semi-gagnsær bakgrunnur
+          child: SafeArea(
+            child: CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: const Offset(0.0, kToolbarHeight + 10.0), // Setur leitarsíuna neðan við appbarinn
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8, // Leitarsía 80% af skjástærð
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextField(
-                            controller: _searchController,
-                            autofocus: true,
-                            decoration: InputDecoration(
-                              hintText: 'Leita að vörum...',
-                              prefixIcon: const Icon(Icons.search),
-                              suffixIcon: IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () {
-                                  _removeSearchOverlay();
-                                },
-                              ),
-                              border: const OutlineInputBorder(),
-                            ),
-                            onChanged: (enter) {
-                              setState(() {});
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Sér þema fyrir leitarsíuna
+                      TextField(
+                        controller: _searchController,
+                        autofocus: true,
+                        style: TextStyle(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Theme.of(context).colorScheme.onSurface
+                              : Theme.of(context).colorScheme.onSecondaryContainer,
+                        ),
+                        cursorColor: Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(context).colorScheme.onSurface
+                            : Theme.of(context).colorScheme.onSecondaryContainer,
+                        decoration: InputDecoration(
+                          hintText: 'Leita að vörum...',
+                          hintStyle: TextStyle(
+                            color: Theme.of(context).brightness == Brightness.dark
+                                ? Theme.of(context).colorScheme.onSurface.withOpacity(0.6)
+                                : Theme.of(context).colorScheme.onSecondaryContainer.withOpacity(0.6),
+                          ),
+                          prefixIcon: const Icon(Icons.search),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () {
+                              _removeSearchOverlay();
                             },
                           ),
-                          const SizedBox(height: 10),
-                          _buildSearchResults(),
-                        ],
+                          border: const OutlineInputBorder(),
+                        ),
+                        onChanged: (value) {
+                          setState(() {}); // Endurnýjar leitarniðurstöður
+                        },
                       ),
-                    ),
+                      const SizedBox(height: 10),
+                      // Leitarniðurstöður
+                      _buildSearchResults(),
+                    ],
                   ),
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
 
+    // Passar að leitin birtist ofar öllu öðru
     Overlay.of(context).insert(_searchOverlayEntry!);
   }
 
+  // Lokar leitarsíunni
   void _removeSearchOverlay() {
     _searchOverlayEntry?.remove();
     _searchOverlayEntry = null;
     _searchController.clear();
   }
 
+  // Setur saman leitarniðurstöður
   Widget _buildSearchResults() {
     final query = _searchController.text.toLowerCase();
     final categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
     final results = categoryProvider.searchProductsByName(query);
 
     if (query.isEmpty) {
-      return const SizedBox.shrink();
+      return const SizedBox.shrink(); // Engin leit framkvæmd
     }
 
     if (results.isEmpty) {
@@ -119,9 +130,12 @@ class _MyAppBarState extends State<MyAppBar> {
       );
     }
 
-    return SizedBox(
-      height: 200,
+    return Container(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.4, // 40% af hæð skjás
+      ),
       child: ListView.builder(
+        shrinkWrap: true,
         itemCount: results.length,
         itemBuilder: (context, index) {
           final product = results[index];
@@ -158,8 +172,7 @@ class _MyAppBarState extends State<MyAppBar> {
 
     return AppBar(
       centerTitle: true,
-      title:
-      TextButton(
+      title: TextButton(
         onPressed: () {
           Navigator.pushAndRemoveUntil(
             context,
@@ -177,10 +190,10 @@ class _MyAppBarState extends State<MyAppBar> {
         ),
       ),
 
+      // Leading sér um atriðin vinstramegin á app barinu
       leading: Row(
-        mainAxisSize: MainAxisSize.min,
         children: [
-          // Menu Button
+          // Menu takkinn innan í Builder til að ná tveimur tökkum saman vinstramegin á app barinu
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(Icons.menu),
@@ -192,14 +205,17 @@ class _MyAppBarState extends State<MyAppBar> {
           ),
 
           // Stækkunarglerið sem opnar leitarsíuna
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              _showSearchOverlay(context);
-            },
-            padding: EdgeInsets.zero,
-            tooltip: 'Leita að vörum',
-            constraints: const BoxConstraints(),
+          CompositedTransformTarget(
+            link: _layerLink,
+            child: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                _showSearchOverlay(context);
+              },
+              tooltip: 'Leita að vörum',
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(), // Passa að þetta taki ekki of mikið pláss
+            ),
           ),
         ],
       ),
