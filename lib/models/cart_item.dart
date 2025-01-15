@@ -1,4 +1,4 @@
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 
 // Hvert CartItem inniheldur vöru, valda stærð og magn.
 // Notað í CartProvider til að halda utan um körfuna.

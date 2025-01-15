@@ -5,7 +5,7 @@ import 'package:website/pages/cart_page.dart';
 import 'package:website/pages/favorites_page.dart';
 import 'package:website/providers/cart_provider.dart';
 import 'package:website/providers/theme_provider.dart';
-import 'package:website/pages/home_screen.dart';
+import 'package:website/pages/home_page.dart';
 import 'package:intl/intl.dart';
 import 'package:website/pages/product_detail_page.dart';
 import 'package:website/providers/category_provider.dart';

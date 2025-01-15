@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:website/items/product.dart';
-import 'package:website/pages/products_screen.dart';
+import 'package:website/models/product.dart';
+import 'package:website/pages/products_page.dart';
 import 'package:website/providers/category_provider.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/widgets/subcategory_row.dart';
 import 'package:website/widgets/category_row.dart';
 import 'package:website/widgets/app_bar.dart';
 import 'package:website/providers/cart_provider.dart';
-import 'package:website/items/cart_item.dart';
+import 'package:website/models/cart_item.dart';
 import 'package:website/providers/favorites_provider.dart';
 
 // Sýnir smáatriðin um hverja vöru (mynd, lýsing, verð, stærð...)

@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:website/data/items.dart';
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 
 // Sér um hvaða flokkur og undirflokkur er valinn á öllum síðum.
 class CategoryProvider with ChangeNotifier {

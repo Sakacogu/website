@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/providers/category_provider.dart';
 import 'package:website/data/items.dart';
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/widgets/category_row.dart';
 import 'package:website/widgets/subcategory_row.dart';

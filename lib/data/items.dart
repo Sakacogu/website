@@ -1,4 +1,4 @@
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 
 // Listi af öllum vörum í appinu, skipt niður eftir categoryId
 // (1 => Konur, 2 => Karlar, 3 => Börn).

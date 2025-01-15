@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 import 'package:website/pages/product_detail_page.dart';
 import 'package:provider/provider.dart';
 import 'package:website/providers/favorites_provider.dart';

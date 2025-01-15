@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Heldur utan um uppáhalds vörur (favoriteProductIds).

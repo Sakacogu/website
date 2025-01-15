@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:website/items/cart_item.dart';
+import 'package:website/models/cart_item.dart';
 
 // Heldur utan um körfuna og listann af CartItem.
 // Hægt að bæta við, fjarlægja, auka/minnka magn, og vista í SharedPreferences.

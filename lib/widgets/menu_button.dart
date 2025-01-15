@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/data/categories.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:website/pages/home_screen.dart';
-import 'package:website/pages/products_screen.dart';
+import 'package:website/pages/home_page.dart';
+import 'package:website/pages/products_page.dart';
 import 'package:website/providers/category_provider.dart';
 
 // Þetta er valmynd sem birtist vinstra megin á skjánum þegar notandi ýtir á menu-hnappinn.

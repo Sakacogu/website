@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:website/providers/cart_provider.dart';
-import 'package:website/items/cart_item.dart';
+import 'package:website/models/cart_item.dart';
 import 'package:website/widgets/app_bar.dart';
 import 'package:website/widgets/menu_button.dart';
-import 'package:website/pages/home_screen.dart';
+import 'package:website/pages/home_page.dart';
 import 'package:website/providers/category_provider.dart';
 
 // Þetta er síðan sem sýnir innihald körfunnar (CartPage).

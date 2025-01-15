@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/providers/favorites_provider.dart';
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 import 'package:website/widgets/product_card.dart';
-import 'package:website/data/product_repository.dart';
+import 'package:website/repositories/product_repository.dart';
 import 'package:website/widgets/menu_button.dart';
 import 'package:website/widgets/app_bar.dart';
 

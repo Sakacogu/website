@@ -1,4 +1,4 @@
-import 'package:website/items/product.dart';
+import 'package:website/models/product.dart';
 import 'package:website/data/items.dart';
 
 // Repository sem veitir aðgang að vörum.
