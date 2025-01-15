@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:website/data/categories.dart';
 
-// Birtir flokka (Allar vörur, Konur, Karlar, Börn) í einni röð.
+// Birtir flokka (Allar vörur, Konur, Karlar, Börn) í einni röð undir app bar.
+// Birtist lika í menu.
 // Hnappur fyrir valinn flokk verður litaður.
 // onCategorySelected notað til að tilkynna val.
 

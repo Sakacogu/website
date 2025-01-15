@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:website/data/categories.dart';
 
 // Smá hjálpar-Widget fyrir undirflokka-hnappana.
+// Birtist neðan við aðal flokkana og í menu.
 class SubcategoryButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;

@@ -6,7 +6,7 @@ import 'package:website/pages/home_screen.dart';
 import 'package:website/pages/products_screen.dart';
 import 'package:website/providers/category_provider.dart';
 
-// Þetta er valmynd sem birtist vinstra megin þegar notandi ýtir á menu-hnappinn.
+// Þetta er valmynd sem birtist vinstra megin á skjánum þegar notandi ýtir á menu-hnappinn.
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:website/data/items.dart';
 import 'package:website/items/product.dart';
 
-// Sér um hvaða flokkur og undirflokkur er valinn.
-
+// Sér um hvaða flokkur og undirflokkur er valinn á öllum síðum.
 class CategoryProvider with ChangeNotifier {
   String? _selectedCategoryId;
   String? _selectedSubcategory;

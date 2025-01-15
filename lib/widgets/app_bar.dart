@@ -11,7 +11,7 @@ import 'package:website/pages/product_detail_page.dart';
 import 'package:website/providers/category_provider.dart';
 
 // Sýnir heiti verslunnarinnar "Fatavörubúð" í miðjunni og hnappa hægra/vinstamegin við nafnið
-// Vinstra megin (Menu til að opna Drawer) og hægra megin (karfa, uppáhald, theme toggle).
+// Vinstra megin (Menu til að opna Drawer og leitar sía) og hægra megin (karfa, uppáhald, theme toggle).
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
 
