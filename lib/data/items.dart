@@ -1,13 +1,12 @@
 import 'package:website/models/product.dart';
 
 // Listi af öllum vörum í appinu, skipt niður eftir categoryId
-// (1 => Konur, 2 => Karlar, 3 => Börn).
 // Hver vara er af gerð Product
 
 final List<Product> products = [
-  // Category 1 (Konur)
+  // Flokkur: konur
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F1',
     name: 'Skyrta með slaufu',
     color: 'svartur og hvítur',
@@ -18,7 +17,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F2',
     name: 'Síð röndótt skyrta',
     color: 'blár og hvítur',
@@ -29,7 +28,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F3',
     name: 'Blómamynstrað pils',
     color: 'gulur og svartur',
@@ -40,7 +39,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F4',
     name: 'Litrík skyrta',
     color: 'teal, bleikur og fjólublár',
@@ -51,7 +50,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F5',
     name: 'Rifflað pils',
     color: 'brúnn',
@@ -62,7 +61,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F6',
     name: 'Röndóttur bolur',
     color: 'hvítur, svartur og gulur',
@@ -73,7 +72,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F7',
     name: 'Háhælaðir skór yfir ökkla',
     color: 'brúnn',
@@ -84,7 +83,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F8',
     name: 'Strigaskór',
     color: 'Bleikt',
@@ -95,7 +94,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F9',
     name: 'Bambus veski',
     color: 'Ljós brúnn',
@@ -106,7 +105,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F10',
     name: 'Blár flæðandi kjóll',
     color: 'blár',
@@ -117,7 +116,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F11',
     name: 'Gallapils með raufum',
     color: 'Blátt',
@@ -128,7 +127,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F12',
     name: 'Hvítir háhælaðir skór',
     color: 'Hvítt',
@@ -139,7 +138,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F13',
     name: 'Litrík leðurtaska',
     color: 'grænn og rauður',
@@ -150,7 +149,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F14',
     name: 'Stutterma- buxur og bolur',
     color: 'hvítur, rauður og svartur',
@@ -161,7 +160,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F15',
     name: 'Loðvesti',
     color: 'Dökk blátt',
@@ -172,7 +171,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F16',
     name: 'Stutterma samfestingur',
     color: 'grátt',
@@ -183,7 +182,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F17',
     name: 'Svartur hlýrabolur',
     color: 'Svartur',
@@ -194,7 +193,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F18',
     name: 'Skyrtu-jakki',
     color: 'blár',
@@ -205,7 +204,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F19',
     name: 'Fóðraður jakki',
     color: 'brúnn',
@@ -216,7 +215,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F20',
     name: 'Stuttermabolur',
     color: 'svartur',
@@ -227,7 +226,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F21',
     name: 'Jakkafatasett',
     color: 'grár',
@@ -238,7 +237,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F22',
     name: 'Svart peysusett',
     color: 'svartur',
@@ -249,7 +248,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F23',
     name: 'Gular gallabuxur',
     color: 'gulur',
@@ -260,7 +259,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F24',
     name: 'cargobuxur',
     color: 'svartur',
@@ -271,7 +270,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F25',
     name: 'Prjónuð peysa',
     color: 'bleikur',
@@ -282,7 +281,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F26',
     name: 'Casual gallabuxur',
     color: 'svartur',
@@ -293,7 +292,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F27',
     name: 'Kjóll',
     color: 'gulur',
@@ -304,7 +303,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F28',
     name: 'Köflóttur frakki',
     color: 'hvítur/svartur',
@@ -315,7 +314,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F29',
     name: 'Kjóll með blómamynstri',
     color: 'bleikur',
@@ -326,7 +325,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F30',
     name: 'Mynstruð slæða',
     color: 'gulur/blár',
@@ -337,7 +336,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F31',
     name: 'Köflóttur kjóll',
     color: 'svartur/hvítur',
@@ -348,7 +347,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F32',
     name: 'Stutterma bolur með kraga',
     color: 'gulur',
@@ -359,7 +358,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F33',
     name: 'Þægileg peysa með kraga',
     color: 'blár/hvítur',
@@ -370,7 +369,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '1',
+    categoryId: 'konur',
     id: 'F34',
     name: 'Vintage jakki',
     color: 'blár',
@@ -379,11 +378,11 @@ final List<Product> products = [
     description: 'Gamaldags en eins og ekkert annað.',
     subcategory: 'yfirhafnir',
     saveCount: 0,
-
-    // Category 2 (Karlar)
   ),
+
+  // Flokkur: karlar
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F35',
     name: 'Fínn og hlýr jakki',
     color: 'brúnn',
@@ -393,9 +392,8 @@ final List<Product> products = [
     subcategory: 'yfirhafnir',
     saveCount: 0,
   ),
-
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F36',
     name: 'Fínir leðurskór',
     color: 'brúnn',
@@ -406,7 +404,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F37',
     name: 'Létt peysa',
     color: 'Svartur',
@@ -417,7 +415,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F38',
     name: 'Töff hettupeysa',
     color: 'gulur',
@@ -428,7 +426,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F39',
     name: 'Þægilegir strigaskór',
     color: 'appelsínugulur',
@@ -439,7 +437,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F40',
     name: 'Slim fit gallabuxur',
     color: 'svartur',
@@ -450,7 +448,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F41',
     name: 'Þröngar gallabuxur',
     color: 'blár',
@@ -461,7 +459,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F42',
     name: 'Þægileg skyrta',
     color: 'hvítur',
@@ -472,7 +470,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F43',
     name: 'Jakkafata jakki',
     color: 'blár',
@@ -483,7 +481,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F44',
     name: 'Adidas sport jakki',
     color: 'svartur',
@@ -494,7 +492,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F45',
     name: 'Hvít jakkaföt',
     color: 'hvítur',
@@ -505,7 +503,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F46',
     name: 'Köflótt skyrta',
     color: 'brúnn',
@@ -516,7 +514,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F47',
     name: 'Hringlótt sólgleraugu',
     color: 'svartur',
@@ -527,7 +525,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F48',
     name: 'létt hettupeysa',
     color: 'grár',
@@ -538,7 +536,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F49',
     name: 'Nike strigaskór',
     color: 'hvítur',
@@ -549,7 +547,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F50',
     name: 'Derhúfa',
     color: 'svartur',
@@ -560,7 +558,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F51',
     name: 'Sólgleraugu',
     color: 'silfur',
@@ -571,7 +569,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F52',
     name: 'Gallabuxur',
     color: 'blár/hvítur',
@@ -582,7 +580,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F53',
     name: 'Loðfelds jakki',
     color: 'svartur/hvítur',
@@ -593,7 +591,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F54',
     name: 'Loðin hettupeysa',
     color: 'hvítur',
@@ -604,7 +602,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F55',
     name: 'Sólgleraugu',
     color: 'hvítur',
@@ -615,7 +613,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F56',
     name: 'Leðurjakki',
     color: 'brúnn',
@@ -626,7 +624,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F57',
     name: 'Dúnúlpur',
     color: 'grænn, grár, hvítur',
@@ -637,7 +635,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F58',
     name: 'Galla jakki',
     color: 'blár',
@@ -648,7 +646,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F59',
     name: 'Kuldaskór',
     color: 'brúnn',
@@ -659,7 +657,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F60',
     name: 'Cargo buxur',
     color: 'grænn/svartur',
@@ -670,7 +668,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F61',
     name: 'Frakki',
     color: 'grár',
@@ -681,7 +679,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F62',
     name: 'trefill',
     color: 'grár',
@@ -692,7 +690,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F63',
     name: 'Hettupeysa',
     color: 'grænn',
@@ -703,7 +701,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F64',
     name: 'frakki',
     color: 'brúnn',
@@ -714,7 +712,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F65',
     name: 'Lambhúshetta',
     color: 'marglit',
@@ -725,7 +723,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F66',
     name: 'Jólapeysa',
     color: 'blár',
@@ -736,7 +734,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '2',
+    categoryId: 'karlar',
     id: 'F67',
     name: 'Leðurvesti',
     color: 'svartur',
@@ -747,9 +745,9 @@ final List<Product> products = [
     saveCount: 0,
   ),
 
-  // Category 3 (Börn)
+  // Flokkur: börn
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F68',
     name: 'Fínni platform skór',
     color: 'svartur',
@@ -760,7 +758,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F69',
     name: 'Eyrnaskjól',
     color: 'bleikur',
@@ -771,7 +769,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F70',
     name: 'Krúttlegur gallakjóll',
     color: 'blár',
@@ -782,7 +780,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F71',
     name: 'Hlý kápa',
     color: 'grænn',
@@ -793,7 +791,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F72',
     name: 'Þægilegir gallabuxur',
     color: 'blár',
@@ -804,7 +802,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F73',
     name: 'Gallabuxur',
     color: 'blár',
@@ -815,7 +813,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F74',
     name: 'Fín stígvel',
     color: 'svartur',
@@ -826,7 +824,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F75',
     name: 'Stuttermabolur',
     color: 'hvítur',
@@ -837,7 +835,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F76',
     name: 'Langermakjóll með mittisbandi',
     color: 'blár',
@@ -848,7 +846,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F77',
     name: 'Langerma kjóll með mynstri',
     color: 'hvítur',
@@ -859,7 +857,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F78',
     name: 'Langermabolur með blómi',
     color: 'hvítur',
@@ -870,7 +868,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F79',
     name: 'Heilgalli',
     color: 'svartur',
@@ -881,7 +879,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F80',
     name: 'Kjóll',
     color: 'bleikur',
@@ -892,7 +890,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F81',
     name: 'Heilgalli',
     color: 'grænn',
@@ -903,7 +901,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F82',
     name: 'Gallajakki',
     color: 'hvítur',
@@ -914,7 +912,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F83',
     name: 'Gallabuxur',
     color: 'blár',
@@ -925,7 +923,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F84',
     name: 'Kjóll',
     color: 'svartur/hvítur',
@@ -936,7 +934,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F85',
     name: 'strigaskór',
     color: 'Hvítur, bleikur, grænn',
@@ -947,7 +945,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F86',
     name: 'Peysa',
     color: 'Hvítur',
@@ -958,7 +956,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F87',
     name: 'Peysa með mynstri',
     color: 'grár',
@@ -969,7 +967,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F88',
     name: 'Krúttleg skyrta',
     color: 'grár',
@@ -980,7 +978,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F89',
     name: 'Stígvel',
     color: 'gulur',
@@ -991,7 +989,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F90',
     name: 'Stutterma skyrta',
     color: 'blár',
@@ -1002,7 +1000,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F91',
     name: 'Gallasmekkbuxur',
     color: 'blár',
@@ -1013,7 +1011,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F92',
     name: 'Stuttermaskyrta',
     color: 'blár',
@@ -1024,7 +1022,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F93',
     name: 'Stuttermabolur',
     color: 'hvítur',
@@ -1035,7 +1033,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F94',
     name: 'Slaufa',
     color: 'rauð',
@@ -1046,7 +1044,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F95',
     name: 'Skyrta',
     color: 'blár',
@@ -1057,7 +1055,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F96',
     name: 'Skyrta',
     color: 'blár',
@@ -1068,7 +1066,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F97',
     name: 'Rifnar allabuxur',
     color: 'Hvítur',
@@ -1079,7 +1077,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F98',
     name: 'Köflótt skyrta',
     color: 'brúnn',
@@ -1090,7 +1088,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F99',
     name: 'Leður skór',
     color: 'brúnn',
@@ -1101,7 +1099,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F100',
     name: 'Skyrta',
     color: 'hvítur',
@@ -1112,7 +1110,7 @@ final List<Product> products = [
     saveCount: 0,
   ),
   Product(
-    categoryId: '3',
+    categoryId: 'börn',
     id: 'F101',
     name: 'Bolur með mynstri',
     color: 'brúnn',
