@@ -30,6 +30,17 @@ class AppDrawer extends StatelessWidget {
     final double rightMargin = 1000 * widthRatio;
     final double bottomMargin = 250 * heightRatio;
 
+    void navigateHome(BuildContext context) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false,
+      );
+      final catProv = Provider.of<CategoryProvider>(context, listen: false);
+      catProv.updateCategory(null);
+      catProv.updateSubcategory(null);
+    }
+
     return Container(
       margin: EdgeInsets.fromLTRB(leftMargin, topMargin, rightMargin, bottomMargin),
       decoration: BoxDecoration(
@@ -56,17 +67,7 @@ class AppDrawer extends StatelessWidget {
             ),
             child: Center(
               child: TextButton(
-                onPressed: () {
-                  // Fer á upphafssíðu og endurstillir flokk og undirflokk
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
-                          (Route<dynamic> route) => false
-                  );
-                  final catProv = Provider.of<CategoryProvider>(context, listen: false);
-                  catProv.updateCategory(null);
-                  catProv.updateSubcategory(null);
-                },
+                onPressed: () => navigateHome(context),
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                   minimumSize: const Size(0, 0),

@@ -173,7 +173,7 @@ class MyAppBarState extends State<MyAppBar> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final cartProvider = Provider.of<CartProvider>(context);
 
-    void _navigateHome(BuildContext context) {
+    void navigateHome(BuildContext context) {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -187,7 +187,7 @@ class MyAppBarState extends State<MyAppBar> {
     return AppBar(
       centerTitle: true,
       title: TextButton(
-        onPressed: () => _navigateHome(context),
+        onPressed: () => navigateHome(context),
         child: Text(
           'Fatavörubúð',
           style: GoogleFonts.besley(
