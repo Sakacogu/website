@@ -173,19 +173,21 @@ class MyAppBarState extends State<MyAppBar> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final cartProvider = Provider.of<CartProvider>(context);
 
+    void _navigateHome(BuildContext context) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false,
+      );
+      final catProv = Provider.of<CategoryProvider>(context, listen: false);
+      catProv.updateCategory(null);
+      catProv.updateSubcategory(null);
+    }
+
     return AppBar(
       centerTitle: true,
       title: TextButton(
-        onPressed: () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (route) => false,
-          );
-          final catProv = Provider.of<CategoryProvider>(context, listen: false);
-          catProv.updateCategory(null);
-          catProv.updateSubcategory(null);
-        },
+        onPressed: () => _navigateHome(context),
         child: Text(
           'Fatavörubúð',
           style: GoogleFonts.besley(
